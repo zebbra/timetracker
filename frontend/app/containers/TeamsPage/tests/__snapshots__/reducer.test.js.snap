@@ -1,0 +1,9 @@
+exports[`teamsPageReducer returns the initial state 1`] = `
+Object {
+  "allTeams": Array [],
+  "loading": false,
+  "renderComponent": "table",
+  "team": Object {},
+  "users": Array [],
+}
+`;

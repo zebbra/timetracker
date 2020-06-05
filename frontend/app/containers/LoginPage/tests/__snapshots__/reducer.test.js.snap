@@ -1,0 +1,9 @@
+exports[`loginPageReducer returns the initial state 1`] = `
+Object {
+  "component": "login",
+  "error": undefined,
+  "info": undefined,
+  "token": undefined,
+  "uid": undefined,
+}
+`;

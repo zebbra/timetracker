@@ -1,0 +1,8 @@
+exports[`elementsPageReducer returns the initial state 1`] = `
+Object {
+  "element": Object {},
+  "elements": Array [],
+  "loading": false,
+  "renderComponent": "table",
+}
+`;

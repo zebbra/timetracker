@@ -1,0 +1,33 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "mongoDS": {
+    "host": "127.0.0.1",
+    "port": 27017,
+    "url": "",
+    "database": "timetracker",
+    "password": "",
+    "name": "mongoDS",
+    "user": "",
+    "connector": "mongodb"
+  },
+  "emailDS": {
+    "name": "emailDS",
+    "connector": "mail",
+    "transports": [{
+      "type": "smtp",
+      "host": "smtp.sendgrid.net",
+      "secure": true,
+      "port": 465,
+      "tls": {
+        "rejectUnauthorized": false
+      },
+      "auth": {
+        "user": "apikey",
+        "pass": "secret"
+      }
+    }]
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "name": "setpoint",
+  "base": "PersistedModel",
+  "strict": true,
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "replaceOnPUT": false,
+  "mixins": {
+    "DisableAllMethods": {
+      "expose": ["find", "findById", "create", "deleteById"]
+    },
+    "BelongsToIntegrityCheck": {},
+    "Timestamp": {},
+    "AuditLog": {}
+  },
+  "hidden": ["yearIndex"],
+  "properties": {
+    "value": {
+      "type": "any",
+      "required": true
+    },
+    "year": {
+      "type": "number",
+      "required": true
+    },
+    "closed": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "yearIndex": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "element": {
+      "type": "belongsTo",
+      "model": "element",
+      "foreignKey": "elementId"
+    },
+    "user": {
+      "type": "belongsTo",
+      "model": "user",
+      "foreignKey": "userId",
+      "dependent": "destroy"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "user",
+      "permission": "ALLOW",
+      "property": "create"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

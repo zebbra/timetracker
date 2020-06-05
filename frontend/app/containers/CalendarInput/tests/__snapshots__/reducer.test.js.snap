@@ -1,0 +1,5 @@
+exports[`calendarInputReducer returns the initial state 1`] = `
+Object {
+  "initialValue": undefined,
+}
+`;

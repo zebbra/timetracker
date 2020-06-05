@@ -1,0 +1,11 @@
+exports[`reportsPageReducer returns the initial state 1`] = `
+Object {
+  "component": "time",
+  "data": Array [],
+  "indicators": Array [],
+  "loading": false,
+  "profile": undefined,
+  "selectedYear": 2020,
+  "timeseries": Array [],
+}
+`;

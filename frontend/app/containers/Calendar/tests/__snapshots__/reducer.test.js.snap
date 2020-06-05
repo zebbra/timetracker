@@ -1,0 +1,34 @@
+exports[`calendarReducer returns the initial state 1`] = `
+Object {
+  "daysPerWeek": 5,
+  "elements": Array [],
+  "holidays": Array [],
+  "loading": false,
+  "navigation": undefined,
+  "navigationElements": Array [],
+  "regions": Array [
+    Object {
+      "type": "range",
+    },
+    Object {
+      "type": "dynamic",
+    },
+    Object {
+      "type": "static",
+    },
+  ],
+  "reporting": Object {},
+  "selectedCell": Object {
+    "dayOfWeek": undefined,
+    "elementId": undefined,
+    "rowIndex": undefined,
+  },
+  "selectedDate": "2010-06-09T22:20:00.000Z",
+  "showWeekendWithTrack": false,
+  "tracks": Object {},
+  "userSettings": Object {
+    "elements": Object {},
+    "showWeekend": false,
+  },
+}
+`;

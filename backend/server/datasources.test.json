@@ -1,0 +1,6 @@
+{
+  "mongoDS": {
+    "name": "mongoDS",
+    "connector": "memory"
+  }
+}

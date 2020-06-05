@@ -1,0 +1,6 @@
+{
+  "frontend": {
+    "host": "timetracker.cloud.zebbra.ch",
+    "port": "443"
+  }
+}

@@ -1,0 +1,9 @@
+exports[`holidaysPageRedcuer returns the initial state 1`] = `
+Object {
+  "holiday": Object {},
+  "holidays": Array [],
+  "loading": false,
+  "renderComponent": "table",
+  "selectedYear": 2020,
+}
+`;

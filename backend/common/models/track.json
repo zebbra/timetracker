@@ -1,0 +1,92 @@
+{
+  "name": "track",
+  "base": "PersistedModel",
+  "strict": true,
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "replaceOnPUT": false,
+  "mixins": {
+    "DisableAllMethods": {
+      "expose": [
+        "find",
+        "findById",
+        "create",
+        "deleteById"
+      ]
+    },
+    "BelongsToIntegrityCheck": {},
+    "Timestamp": {}
+  },
+  "hidden": [
+    "dayIndex"
+  ],
+  "properties": {
+    "date": {
+      "type": "date",
+      "required": true,
+      "index": true
+    },
+    "label": {
+      "type": "string"
+    },
+    "value": {
+      "type": "any",
+      "required": true
+    },
+    "type": {
+      "type": "string",
+      "required": true
+    },
+    "duration": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "closed": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "dayIndex": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "element": {
+      "type": "belongsTo",
+      "model": "element",
+      "foreignKey": "elementId"
+    },
+    "user": {
+      "type": "belongsTo",
+      "model": "user",
+      "foreignKey": "userId",
+      "dependent": "destroy"
+    }
+  },
+  "acls": [{
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "user",
+      "permission": "ALLOW",
+      "property": "create"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

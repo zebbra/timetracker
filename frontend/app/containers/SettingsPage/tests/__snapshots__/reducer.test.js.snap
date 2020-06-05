@@ -1,0 +1,21 @@
+exports[`settingsPageReducer returns the initial state 1`] = `
+Object {
+  "component": "employment",
+  "elements": Array [],
+  "employments": Array [],
+  "loading": false,
+  "profile": Object {
+    "closed": false,
+    "plannedMixed": 0,
+    "plannedPremiums": 0,
+    "plannedQuali": 0,
+    "plannedVacations": 0,
+    "transferGrantedOvertime": 0,
+    "transferGrantedVacations": 0,
+    "transferOvertime": 0,
+    "transferTotalLastYear": 0,
+  },
+  "record": Object {},
+  "selectedYear": 2020,
+}
+`;

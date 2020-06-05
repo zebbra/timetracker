@@ -1,0 +1,20 @@
+exports[`appReducer returns the initial state 1`] = `
+Object {
+  "api": Object {
+    "url": "http://localhost:8000",
+  },
+  "error": Object {},
+  "info": Object {},
+  "latestVersion": "2.5.8",
+  "onboarded": true,
+  "printing": false,
+  "sidebarLeft": Object {
+    "show": false,
+  },
+  "sidebarRight": Object {
+    "name": undefined,
+    "show": false,
+  },
+  "version": "2.5.8",
+}
+`;

@@ -1,0 +1,89 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "db",
+    "public": false
+  },
+  "AccessToken": {
+    "dataSource": "mongoDS",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "mongoDS",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "mongoDS",
+    "public": false,
+    "options": {
+      "strictObjectIDCoercion": true
+    }
+  },
+  "Role": {
+    "dataSource": "mongoDS",
+    "public": false
+  },
+  "Email": {
+    "dataSource": "emailDS",
+    "options": {
+      "from": "noreply@medi.ch"
+    }
+  },
+  "user": {
+    "dataSource": "mongoDS",
+    "public": true
+  },
+  "track": {
+    "dataSource": "mongoDS",
+    "public": true
+  },
+  "element": {
+    "dataSource": "mongoDS",
+    "public": true
+  },
+  "holiday": {
+    "dataSource": "mongoDS",
+    "public": true
+  },
+  "component-setting": {
+    "dataSource": "mongoDS",
+    "public": true
+  },
+  "setpoint": {
+    "dataSource": "mongoDS",
+    "public": true
+  },
+  "employment-profile": {
+    "dataSource": "mongoDS",
+    "public": true
+  },
+  "employment": {
+    "dataSource": "mongoDS",
+    "public": true
+  },
+  "team": {
+    "dataSource": "mongoDS",
+    "public": true
+  },
+  "membership": {
+    "dataSource": "mongoDS",
+    "public": false
+  },
+  "changelog": {
+    "dataSource": "mongoDS",
+    "public": true
+  }
+}
