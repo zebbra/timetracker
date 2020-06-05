@@ -1,0 +1,23 @@
+kind: pipeline
+name: test
+
+trigger:
+  event: [push]
+
+steps:
+  - name: frontend
+    image: node:10.17.0-alpine3.10
+    commands:
+      - cd frontend
+      - yarn install --pure-lockfile
+      - yarn lint
+    depends_on: [clone]
+
+  - name: backend
+    image: node:10.17.0-alpine3.10
+    commands:
+      - cd backend
+      - yarn install --pure-lockfile
+      - yarn lint
+      - yarn test
+    depends_on: [clone]
