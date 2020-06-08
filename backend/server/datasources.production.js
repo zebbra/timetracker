@@ -2,6 +2,7 @@ module.exports = {
   mongoDS: {
     url: process.env.MONGO_URL,
     name: "mongoDS",
+    protocol: "mongodb+srv",
     connector: "mongodb"
   },
   emailDS: {

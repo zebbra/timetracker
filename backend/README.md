@@ -120,6 +120,10 @@ yarn run cron:start
 
 - `DEBUG` what message to log (e.g. `*,-loopback:connector:mongodb*`)
 
+### New Relic
+
+- `NEW_RELIC_KEY` the new relic access key
+
 ## Automatic backups with dokku and amazon s3
 
 ```bash

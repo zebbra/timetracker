@@ -1,16 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "timetracker.fullname" . }}
+  name: {{ include "medi-timetracker.fullname" . }}-backend
   labels:
-    {{- include "timetracker.labels" . | nindent 4 }}
+    {{- include "medi-timetracker.labels" . | nindent 4 }}
+    app.kubernetes.io/component: backend
 spec:
 {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
 {{- end }}
   selector:
     matchLabels:
-      {{- include "timetracker.selectorLabels" . | nindent 6 }}
+      {{- include "medi-timetracker.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: backend
   template:
     metadata:
     {{- with .Values.podAnnotations }}
@@ -18,24 +20,36 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       labels:
-        {{- include "timetracker.selectorLabels" . | nindent 8 }}
+        {{- include "medi-timetracker.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: backend
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "timetracker.serviceAccountName" . }}
+      serviceAccountName: {{ include "medi-timetracker.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Chart.Name }}
+        - name: backend
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          envFrom:
+            - secretRef:
+              name: {{ include "medi-timetracker.fullname" . }}-backend
+            - configMapRef:
+              name: {{ include "medi-timetracker.fullname" . }}-backend
+          env:
+            - name: PORT
+              value: 3000
+            - name: DEBUG
+              value: "*,-loopback:connector:mongodb*,-loopback:security*,-strong-globalize,-loopback:datasource,-loopback:juggler*"
+          args: ['backend', 'start:server-prod']
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 3000
               protocol: TCP
           livenessProbe:
             httpGet:
