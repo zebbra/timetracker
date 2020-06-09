@@ -5,6 +5,7 @@ const moment = require("moment");
 const async = require("async");
 const _ = require("lodash");
 
+const backup = require("./backup");
 const app = require(path.resolve(__dirname, "../server/server"));
 const reporting = require(path.resolve(__dirname, "../common/reporting"));
 const formatters = require(path.resolve(__dirname, "../common/formatters"));
@@ -295,4 +296,8 @@ debug(
 const yearTransitionJob = schedule.scheduleJob("0 5 0 1 1 *", yearTransition);
 debug(
   `starting job=yearTransitionJob nextInvocation=${yearTransitionJob.nextInvocation()}`
+);
+const databaseBackupJob = schedule.scheduleJob("0 0 2 * * *", backup);
+debug(
+  `starting job=databaseBackupJob nextInvocation=${databaseBackupJob.nextInvocation()}`
 );
