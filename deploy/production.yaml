@@ -1,0 +1,17 @@
+fullnameOverride: timetracker
+
+frontend:
+  env:
+    TIMETRACKER_BACKEND_URL: https://timetracker.media.zebbra.ch
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: timetracker.medi.zebbra.ch
+  tls:
+    - secretName: timetracker-tls
+      hosts:
+        - timetracker.medi.zebbra.ch

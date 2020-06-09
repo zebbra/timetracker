@@ -1,6 +1,6 @@
 releases:
-  - name: medi-timetracker
-    namespace: medi-timetracker
+  - name: timetracker
+    namespace: medi
     chart: ./helm
-    # values:
-    #   - production.yaml
+    values:
+      - production.yaml
