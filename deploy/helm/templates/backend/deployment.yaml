@@ -39,8 +39,6 @@ spec:
           envFrom:
             - secretRef:
                 name: {{ include "medi-timetracker.fullname" . }}-backend
-            - configMapRef:
-                name: {{ include "medi-timetracker.fullname" . }}-backend
           env:
             - name: PORT
               value: "3000"
