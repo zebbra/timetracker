@@ -123,17 +123,3 @@ yarn run cron:start
 ### New Relic
 
 - `NEW_RELIC_KEY` the new relic access key
-
-## Automatic backups with dokku and amazon s3
-
-```bash
-# List all dokku mongo commands
-$ dokku mongo:help
-# Setup aws s3 bucket auth
-$ dokku mongo:backup-auth DATABASE AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY
-AWS_REGION AWS_SIGNATURE_VERSION ENDPOINT_URL
-# Backup
-$ dokku mongo:backup DATABASE MY_S3_BUCKET
-# Schedule
-$ dokku mongo:backup-schedule DATABASE "0 3 * * *" MY_S3_BUCKET
-```
