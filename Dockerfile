@@ -21,8 +21,12 @@ WORKDIR /app
 ENV NODE_ENV=production
 
 # install system packages
-RUN apk add --no-cache bash \
-    apk add --no-cache mongodb
+RUN apk add --no-cache bash
+
+RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories
+RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories
+RUN apk update
+RUN apk add --no-cache mongodb-tools
 
 # install runtime dependencies
 ADD ./backend/package.json ./backend/yarn.lock ./backend/
