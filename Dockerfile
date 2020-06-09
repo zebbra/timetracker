@@ -3,7 +3,7 @@
 FROM node:10.17.0-alpine3.10 as builder
 WORKDIR /src
 ENV SENTRY_PUBLIC_DSN=https://ad6da002443048b7a79dad5c8b2b867c@sentry.zebbra.ch/10
-ENV TIMETRACKER_BACKEND_URL=https://timetracker.media.zebbra.ch
+ENV TIMETRACKER_BACKEND_URL=https://timetracker.medi.zebbra.ch
 
 # install build dependencies
 ADD ./frontend/package.json ./frontend/yarn.lock ./frontend/.npmrc ./frontend/

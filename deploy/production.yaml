@@ -2,7 +2,7 @@ fullnameOverride: timetracker
 
 frontend:
   env:
-    TIMETRACKER_BACKEND_URL: https://timetracker.media.zebbra.ch
+    TIMETRACKER_BACKEND_URL: https://timetracker.medi.zebbra.ch
 
 ingress:
   enabled: true
