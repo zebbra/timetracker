@@ -11,5 +11,9 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "medi-timetracker.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "medi-timetracker.fullname" . }}-backend:{{ .Values.backend.service.port }}']
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "medi-timetracker.fullname" . }}-frontend:{{ .Values.frontend.service.port }}']
   restartPolicy: Never
