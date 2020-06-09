@@ -33,7 +33,7 @@ function _cleanup(callback) {
       return callback(err);
     }
 
-    callback();
+    return callback();
   });
 }
 
