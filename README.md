@@ -1,6 +1,6 @@
 # Medi Timetracker
 
-[![Build Status](https://drone.zebbra.ch/api/badges/zebbra-repos/timetracker/status.svg)](https://drone.zebbra.ch/zebbra-repos/timetracker)
+[![Build Status](https://drone.zebbra.ch/api/badges/zebbra/timetracker/status.svg)](https://drone.zebbra.ch/zebbra/timetracker)
 
 Combined repository for the timetracker application developed for [medi](https://www.medi.ch/).
 
@@ -33,8 +33,6 @@ Combined repository for the timetracker application developed for [medi](https:/
    cd deploy && helmfile apply
    ```
 
-## Normal Deployment
+## Deployment
 
-```bash
-drone build promote zebbra-repos/medi-timetracker <build-number>
-```
+Push to master branch will trigger new deployment on k8s.
