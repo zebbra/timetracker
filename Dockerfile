@@ -18,16 +18,19 @@ FROM node:10.17.0-alpine3.10
 WORKDIR /app
 ENV NODE_ENV=production
 
+# install system packages
+RUN apk add --no-cache bash
+
 # install runtime dependencies
 ADD ./backend/package.json ./backend/yarn.lock ./backend/
 RUN cd ./backend && yarn install
-ADD ./frontend/package.json ./frontend/yarn.lock ./frontend/
-ADD ./frontend/internals ./frontend/internals/
+
+ADD ./frontend/package.json ./frontend/yarn.lock  ./frontend/internals ./frontend/
 RUN cd ./frontend && yarn install
 
 # copy build artefacts from builder
 ADD ./backend ./backend
-Add ./frontend ./frontend
+ADD ./frontend ./frontend
 COPY --from=builder /src/frontend/build ./frontend/build
 
 ADD ./deploy/docker-entrypoint.sh /usr/local/bin/
