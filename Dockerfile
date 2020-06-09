@@ -4,7 +4,7 @@ FROM node:10.17.0-alpine3.10 as builder
 WORKDIR /src
 
 # install build dependencies
-ADD ./frontend/package.json ./frontend/yarn.lock ./frontend/
+ADD ./frontend/package.json ./frontend/yarn.lock ./frontend/.npmrc ./frontend/
 ADD ./frontend/internals ./frontend/internals/
 RUN cd ./frontend && yarn install
 
@@ -25,7 +25,8 @@ RUN apk add --no-cache bash
 ADD ./backend/package.json ./backend/yarn.lock ./backend/
 RUN cd ./backend && yarn install
 
-ADD ./frontend/package.json ./frontend/yarn.lock  ./frontend/internals ./frontend/
+ADD ./frontend/package.json ./frontend/yarn.lock ./frontend/.npmrc ./frontend/
+ADD ./frontend/internals ./frontend/internals/
 RUN cd ./frontend && yarn install
 
 # copy build artefacts from builder
