@@ -2,7 +2,6 @@
 
 FROM node:10.17.0-alpine3.10 as builder
 WORKDIR /src
-ENV NODE_ENV=production
 ENV SENTRY_PUBLIC_DSN=aHR0cHM6Ly9hZDZkYTAwMjQ0MzA0OGI3YTc5ZGFkNWM4YjJiODY3Y0BzZW50cnkuemViYnJhLmNoLzEw
 ENV TIMETRACKER_BACKEND_URL=https://timetracker.media.zebbra.ch
 
