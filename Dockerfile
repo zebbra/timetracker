@@ -2,7 +2,7 @@
 
 FROM node:10.17.0-alpine3.10 as builder
 WORKDIR /src
-ENV SENTRY_PUBLIC_DSN=aHR0cHM6Ly9hZDZkYTAwMjQ0MzA0OGI3YTc5ZGFkNWM4YjJiODY3Y0BzZW50cnkuemViYnJhLmNoLzEw
+ENV SENTRY_PUBLIC_DSN=https://ad6da002443048b7a79dad5c8b2b867c@sentry.zebbra.ch/10
 ENV TIMETRACKER_BACKEND_URL=https://timetracker.media.zebbra.ch
 
 # install build dependencies
