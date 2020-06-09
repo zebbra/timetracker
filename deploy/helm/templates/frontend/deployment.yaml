@@ -38,13 +38,13 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           envFrom:
             - secretRef:
-              name: {{ include "medi-timetracker.fullname" . }}-frontend
+                name: {{ include "medi-timetracker.fullname" . }}-frontend
             - configMapRef:
-              name: {{ include "medi-timetracker.fullname" . }}-frontend
+                name: {{ include "medi-timetracker.fullname" . }}-frontend
           env:
             - name: PORT
-              value: 3000
-            - name: medi-timetracker_BACKEND_URL
+              value: "3000"
+            - name: TIMETRACKER_BACKEND_URL
               value: https://medi-timetracker-server.k8s.zebbra.ch
             - name: DEBUG
               value: "*,-babel"

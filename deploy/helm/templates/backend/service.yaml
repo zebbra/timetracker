@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: {{ include "medi-timetracker.fullname" . }}-backend
   labels: 
-    {{ - include "medi-timetracker.labels" . | nindent 4 }}
+    {{- include "medi-timetracker.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -12,5 +12,5 @@ spec:
       protocol: TCP
       name: http
   selector: 
-    {{ - include "medi-timetracker.selectorLabels" . | nindent 4 }}
+    {{- include "medi-timetracker.selectorLabels" . | nindent 4 }}
     app.kubernetes.io/component: backend
