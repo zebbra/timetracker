@@ -5,7 +5,7 @@
  */
 
 import { fromJS } from 'immutable';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 import { SET_COMPONENT, SET_SELECTED_YEAR } from './constants';
 import { fetchAllTimeData, fetchAllElementsData, submitManualCorrection } from './routines';

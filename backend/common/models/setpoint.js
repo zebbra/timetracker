@@ -1,5 +1,5 @@
 const logError = require("debug")("app:error:setpoint");
-const moment = require("moment");
+const moment = require("moment-timezone");
 const errors = require("../errors");
 const validators = require("../validators");
 

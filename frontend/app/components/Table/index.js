@@ -14,7 +14,7 @@ import Dialog from 'material-ui/Dialog';
 import ReactTooltip from 'react-tooltip';
 import InfoIcon from 'material-ui/svg-icons/action/info';
 import EyeIcon from 'material-ui/svg-icons/image/remove-red-eye';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import 'react-table/react-table.css';
 
 import ActionButton from 'components/ActionButton';

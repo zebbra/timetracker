@@ -1,7 +1,7 @@
 /* global before after app describe it expect */
 // eslint-disable-next-line node/no-unpublished-require
 const supertest = require("supertest");
-const moment = require("moment");
+const moment = require("moment-timezone");
 const modelHelper = require("../helpers/models");
 
 describe("/Holiday admin", () => {

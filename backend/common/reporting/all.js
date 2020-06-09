@@ -1,6 +1,6 @@
 const _ = require("lodash");
 const async = require("async");
-const moment = require("moment");
+const moment = require("moment-timezone");
 
 const formatters = require("../formatters");
 const { fetchProfiles } = require("./helpers");

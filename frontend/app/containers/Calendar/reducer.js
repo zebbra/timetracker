@@ -6,7 +6,7 @@
 
 import { fromJS } from 'immutable';
 import { flatten, filter, unionBy, head, groupBy, values, mapKeys } from 'lodash';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 import { submitCalendarForm } from 'containers/CalendarInput/routines';
 import { prepareElementsReducer, navigate, initializeUserSettings } from './helpers';

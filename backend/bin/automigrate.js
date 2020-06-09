@@ -1,7 +1,7 @@
 const path = require("path");
 const async = require("async");
 const debug = require("debug")("db:migration:automigrate");
-const moment = require("moment");
+const moment = require("moment-timezone");
 
 const app = require(path.resolve(__dirname, "../server/server"));
 const ds = app.dataSources.mongoDS;

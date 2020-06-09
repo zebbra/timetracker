@@ -15,7 +15,7 @@ import Popover, { PopoverAnimationVertical } from 'material-ui/Popover';
 import ArrowDownIcon from 'material-ui/svg-icons/navigation/arrow-drop-down';
 import ArrowUpIcon from 'material-ui/svg-icons/navigation/arrow-drop-up';
 import Menu from 'material-ui/Menu';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import ReactTooltip from 'react-tooltip';
 
 import { HeaderWrapper, MenuItemWrapper } from './Wrapper';

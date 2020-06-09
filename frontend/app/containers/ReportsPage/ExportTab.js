@@ -12,7 +12,7 @@ import { Card } from 'material-ui/Card';
 import { Flex } from 'grid-styled';
 import { fromJS } from 'immutable';
 import { List, ListItem } from 'material-ui/List';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 import CardHeader from 'components/CardHeader';
 import Form from 'containers/Form';

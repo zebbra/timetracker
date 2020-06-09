@@ -1,6 +1,6 @@
 const _ = require("lodash");
 const async = require("async");
-const moment = require("moment");
+const moment = require("moment-timezone");
 const debug = require("debug")("app:reporting:indicator");
 
 const {

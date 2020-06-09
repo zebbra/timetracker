@@ -5,7 +5,7 @@
  */
 
 import { fromJS } from 'immutable';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import { unionBy, filter } from 'lodash';
 
 import { SET_RENDER_COMPONENT, SET_SELECTED_YEAR } from './constants';

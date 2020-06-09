@@ -1,6 +1,6 @@
 const _ = require("lodash");
 const debug = require("debug")("app:reporting:helpers");
-const moment = require("moment");
+const moment = require("moment-timezone");
 
 const { DATE_KEY_FORMAT, HOURS_PER_DAY } = require("./constants");
 const formatters = require("../formatters");

@@ -4,6 +4,8 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const MomentTimezoneDataPlugin = require('moment-timezone-data-webpack-plugin');
+const currentYear = new Date().getFullYear();
 
 module.exports = (options) => ({
   entry: options.entry,
@@ -64,6 +66,13 @@ module.exports = (options) => ({
     new webpack.ProvidePlugin({
       // make fetch available
       fetch: 'exports-loader?self.fetch!whatwg-fetch',
+    }),
+
+    // To include only specific zones, use the matchZones option
+    new MomentTimezoneDataPlugin({
+      matchZones: /^Europe\/Zurich/,
+      startYear: currentYear - 5,
+      endYear: currentYear + 15,
     }),
 
     // Always expose NODE_ENV to webpack, in order to use `process.env.NODE_ENV`

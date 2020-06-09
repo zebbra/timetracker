@@ -1,7 +1,7 @@
 import { call, put, select } from 'redux-saga/effects';
 import request from 'utils/request';
 import { SubmissionError } from 'redux-form/immutable';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 import { showAppError, showAppInfo } from 'containers/App/actions';
 import { cancelByLocationChange, requestOptions, handleReceiveAppError } from 'utils/generic-sagas';

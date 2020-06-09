@@ -1,5 +1,5 @@
 import { fromJS } from 'immutable';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 import { SET_SELECTED_YEAR, SET_RENDER_COMPONENT } from './constants';
 import {

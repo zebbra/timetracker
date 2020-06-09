@@ -1,6 +1,6 @@
 import { all, call, put, select } from 'redux-saga/effects';
 import request from 'utils/request';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 import { showAppInfo } from 'containers/App/actions';
 import { makeSelectFirstName, makeSelectLastName } from 'hocs/Session/selectors';

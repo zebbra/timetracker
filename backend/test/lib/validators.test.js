@@ -1,5 +1,5 @@
 /* global describe it expect */
-const moment = require("moment");
+const moment = require("moment-timezone");
 const valildators = require("../../common/validators");
 
 describe("validators module", () => {

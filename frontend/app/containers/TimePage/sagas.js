@@ -1,6 +1,6 @@
 import { all, call, put } from 'redux-saga/effects';
 import request from 'utils/request';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import { sortBy } from 'lodash';
 
 import { cancelByLocationChangeWithThrottle, requestOptions, handleReceiveAppError } from 'utils/generic-sagas';

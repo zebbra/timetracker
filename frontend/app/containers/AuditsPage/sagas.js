@@ -1,6 +1,6 @@
 import { call, put, select } from 'redux-saga/effects';
 import request from 'utils/request';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 import { cancelByLocationChange, requestOptions, handleReceiveAppError } from 'utils/generic-sagas';
 

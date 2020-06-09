@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { Flex, Box } from 'grid-styled';
 import { Card } from 'material-ui/Card';
 import { fromJS } from 'immutable';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import Dialog from 'material-ui/Dialog';
 
 import ActionButton from 'components/ActionButton';

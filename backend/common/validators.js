@@ -1,4 +1,4 @@
-const moment = require("moment");
+const moment = require("moment-timezone");
 const errors = require("./errors");
 
 const DAY_REGEX = /^1$|^0(?:[.,]\d+)?$/; // 0..1

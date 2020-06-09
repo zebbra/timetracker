@@ -11,7 +11,7 @@ import { bindActionCreators } from 'redux';
 import { bindRoutineCreators } from 'redux-saga-routines';
 import { createStructuredSelector } from 'reselect';
 import Loader from 'react-loader-advanced';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import { groupBy, sortBy } from 'lodash';
 
 import Alert from 'components/Alert';

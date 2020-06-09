@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment from 'moment-timezone';
 import { head, last, find, findIndex, sortBy, includes, fromPairs, map, groupBy } from 'lodash';
 import { Map } from 'immutable';
 

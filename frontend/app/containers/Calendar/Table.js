@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import MomentPropTypes from 'react-moment-proptypes';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import { fromJS } from 'immutable';
 
 import { makeSelectTracks, makeSelectElements } from './selectors';

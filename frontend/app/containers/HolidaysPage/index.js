@@ -13,7 +13,7 @@ import { createStructuredSelector } from 'reselect';
 import { fromJS } from 'immutable';
 import { Flex } from 'grid-styled';
 import { Card } from 'material-ui/Card';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import Loader from 'react-loader-advanced';
 import { orderBy, head } from 'lodash';
 

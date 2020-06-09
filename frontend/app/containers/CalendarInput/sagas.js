@@ -1,6 +1,6 @@
 import { all, call, put, select, takeEvery } from 'redux-saga/effects';
 import request from 'utils/request';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 import { fetchReporting } from 'containers/TimePage/routines';
 import { showAppError } from 'containers/App/actions';

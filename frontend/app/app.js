@@ -18,7 +18,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import FontFaceObserver from 'fontfaceobserver';
 import 'sanitize.css/sanitize.css';
 import 'react-select/dist/react-select.css';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 // Import root app
 import App from 'containers/App';
@@ -48,6 +48,7 @@ injectTapEventPlugin();
 
 // Change moment locale to swiss-german
 moment.locale('de-ch');
+moment.tz.setDefault('Europe/Zurich');
 
 // Observe loading of Roboto Font (to remove roboto font, remove the <link> tag in
 // the index.html file and this observer)

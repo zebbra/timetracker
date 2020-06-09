@@ -1,5 +1,5 @@
 import MockDate from 'mockdate';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import reducer from '../reducer';
 
 describe('calendarReducer', () => {

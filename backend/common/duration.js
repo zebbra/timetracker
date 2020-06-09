@@ -1,4 +1,4 @@
-const moment = require("moment");
+const moment = require("moment-timezone");
 const validators = require("./validators");
 
 const SECONDS_PER_WEEK = 60 * 60 * 8.4 * 5;

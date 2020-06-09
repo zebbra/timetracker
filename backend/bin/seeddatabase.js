@@ -1,6 +1,6 @@
 const path = require("path");
 const async = require("async");
-const moment = require("moment");
+const moment = require("moment-timezone");
 const debug = require("debug")("db:seed");
 
 const app = require(path.resolve(__dirname, "../server/server"));

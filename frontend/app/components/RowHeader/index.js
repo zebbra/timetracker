@@ -27,7 +27,7 @@ import ArrowDownIcon from 'material-ui/svg-icons/navigation/arrow-drop-down';
 import ArrowUpIcon from 'material-ui/svg-icons/navigation/arrow-drop-up';
 import DownloadIcon from 'material-ui/svg-icons/file/file-download';
 import ReactTooltip from 'react-tooltip';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 import { iconSize } from 'utils/variables';
 

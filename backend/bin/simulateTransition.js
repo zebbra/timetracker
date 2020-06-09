@@ -1,6 +1,6 @@
 const debug = require("debug")("cronjobs");
 const path = require("path");
-const moment = require("moment");
+const moment = require("moment-timezone");
 const async = require("async");
 const _ = require("lodash");
 

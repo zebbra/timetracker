@@ -1,6 +1,6 @@
 /* global app */
 const async = require("async");
-const moment = require("moment");
+const moment = require("moment-timezone");
 const _ = require("lodash");
 
 const roles = {
