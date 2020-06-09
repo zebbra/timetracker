@@ -56,8 +56,20 @@ steps:
         - quay.io/zebbra/timetracker:builder
         - quay.io/zebbra/timetracker:latest
       mtu: 1316
+---
+kind: pipeline
+name: deploy
 
-  - name: deploy
+depends_on:
+  - test
+  - build
+
+trigger:
+  event: [push]
+  branch: [master, k8s]
+
+steps:
+  - name: production
     image: pelotech/drone-helm3
     settings:
       kube_api_server: https://kubernetes.default
