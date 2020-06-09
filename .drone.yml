@@ -27,7 +27,7 @@ name: build
 
 trigger:
   event: [push]
-  branch: ["master"]
+  branch: [master]
 
 steps:
   - name: builder
@@ -55,5 +55,29 @@ steps:
       cache_from:
         - quay.io/zebbra/timetracker:builder
         - quay.io/zebbra/timetracker:latest
-      custom_labels: [quay.expires-after=30d]
       mtu: 1316
+---
+kind: pipeline
+name: deploy
+
+depends_on:
+  - test
+  - build
+
+trigger:
+  event: [push]
+  branch: [master]
+
+steps:
+  - name: production
+    image: pelotech/drone-helm3
+    settings:
+      kube_api_server: https://kubernetes.default
+      kube_token: { from_secret: kubernetes_token }
+      chart: ./deploy/helm
+      release: timetracker
+      namespace: medi
+      values: image.tag=git-${DRONE_COMMIT_SHA:0:7}
+      values_files: [deploy/production.yaml]
+      reuse_values: false
+      skip_tls_verify: true
