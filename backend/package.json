@@ -46,7 +46,10 @@
     "raven": "^2.6.4",
     "s3-client": "^4.4.2",
     "serve-favicon": "^2.5.0",
-    "strong-error-handler": "^3.4.0"
+    "strong-error-handler": "^3.4.0",
+    "tar-fs": "^2.1.0",
+    "rimraf": "^3.0.2",
+    "targz": "^1.0.1"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
@@ -63,10 +66,7 @@
     "mocha": "^6.2.2",
     "nodemon": "^2.0.1",
     "prettier": "^1.19.1",
-    "rimraf": "^3.0.2",
-    "supertest": "^4.0.2",
-    "tar-fs": "^2.1.0",
-    "targz": "^1.0.1"
+    "supertest": "^4.0.2"
   },
   "repository": {
     "type": "",
