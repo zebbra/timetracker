@@ -1,5 +1,5 @@
-const Path = require("path");
 const debug = require("debug")("cronjobs:amazon:upload");
+const _ = require("lodash");
 const client = require("s3-client").createClient({
   s3Options: {
     accessKeyId: process.env.AMAZON_KEY,
@@ -8,9 +8,9 @@ const client = require("s3-client").createClient({
   }
 });
 
-function upload(callback) {
+function upload(file, callback) {
   const params = {
-    localFile: Path.join(__dirname, "../atlas", "tmp", "backup.gz"),
+    localFile: file,
     s3Params: {
       Bucket: "medi-timetracker-backup",
       Key: `mongo-timetracker-${new Date().getDate()}.gz`
@@ -20,15 +20,20 @@ function upload(callback) {
   debug(`Starting upload for ${params.localFile} to ${params.s3Params.Key}`);
   const uploader = client.uploadFile(params);
   uploader.on("error", err => callback(err));
-  uploader.on("progress", () =>
-    debug(
-      "progress",
-      uploader.progressMd5Amount,
-      uploader.progressAmount,
-      uploader.progressTotal
-    )
+  const logProgress = _.throttle(
+    () =>
+      debug(
+        "progress",
+        ((uploader.progressAmount / uploader.progressTotal) * 100).toFixed(2),
+        "%"
+      ),
+    500
   );
-  uploader.on("end", () => callback());
+  uploader.on("progress", logProgress);
+  uploader.on("end", () => {
+    logProgress.cancel();
+    return callback(null, file);
+  });
 }
 
 module.exports = upload;

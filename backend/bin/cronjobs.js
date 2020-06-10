@@ -5,7 +5,7 @@ const moment = require("moment-timezone");
 const async = require("async");
 const _ = require("lodash");
 
-const backup = require("./backup");
+const backup = require("./database/backup");
 const app = require(path.resolve(__dirname, "../server/server"));
 const reporting = require(path.resolve(__dirname, "../common/reporting"));
 const formatters = require(path.resolve(__dirname, "../common/formatters"));

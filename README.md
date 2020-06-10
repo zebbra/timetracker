@@ -36,3 +36,21 @@ Combined repository for the timetracker application developed for [medi](https:/
 ## Deployment
 
 Push to master branch will trigger new deployment on k8s.
+
+## Database backup and restore
+
+> **Requirements:** make sure the `.env` file exists in the `backend` folder
+> with the environment variables from `deploy/secrets.yaml`
+
+Commands:
+
+```bash
+# dump the timetracker collection from mongoDB atlas cluster
+# and upload it to amazon s3 bucket
+yarn db:backup
+
+# download latest backup from the specified amazon s3 bucket
+# and restore it to mongoDB atlas cluster
+# bucket is optional and per default set to medi-timetracker-backup
+yarn db:restore <bucket>
+```
