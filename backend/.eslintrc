@@ -56,6 +56,7 @@
     "promise/no-nesting": 0,
     "semi": [2, "always"],
     "standard/computed-property-even-spacing": [2, "never"],
-    "quotes": [2, "double"]
+    "quotes": [2, "double"],
+    "no-process-exit": 0
   }
 }
