@@ -1,7 +1,7 @@
 fullnameOverride: timetracker
 
-image:
-  tag: git-9966713
+# image:
+#   tag: git-f1dce02
 
 frontend:
   env:

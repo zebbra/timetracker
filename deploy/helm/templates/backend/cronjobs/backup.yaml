@@ -8,6 +8,9 @@ metadata:
 spec:
   schedule: "{{ .Values.cronjobs.backup.schedule }}"
   concurrencyPolicy: Forbid
+  # suspend: {{ .Values.cronjobs.backup.suspend }}
+  failedJobsHistoryLimit: 5
+  successfulJobsHistoryLimit: 5
   jobTemplate:
     spec:
       template:
