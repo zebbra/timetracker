@@ -22,7 +22,9 @@
     "db:update": "DEBUG=db:* node ./bin/autoupdate.js",
     "db:seed": "DEBUG=db:* node ./bin/seeddatabase.js",
     "cron:start": "DEBUG=cronjobs node ./bin/cronjobs.js",
-    "cron:simulate:transition": "DEBUG=cronjobs node ./bin/simulateTransition.js"
+    "cron:simulate:transition": "DEBUG=cronjobs node ./bin/simulateTransition.js",
+    "db:backup": "DEBUG=* node bin/database/backup.js",
+    "db:restore": "DEBUG=* node bin/database/restore.js"
   },
   "dependencies": {
     "async": "^3.1.0",
@@ -44,7 +46,11 @@
     "raven": "^2.6.4",
     "s3-client": "^4.4.2",
     "serve-favicon": "^2.5.0",
-    "strong-error-handler": "^3.4.0"
+    "strong-error-handler": "^3.4.0",
+    "tar-fs": "^2.1.0",
+    "rimraf": "^3.0.2",
+    "dotenv": "^8.2.0",
+    "targz": "^1.0.1"
   },
   "devDependencies": {
     "eslint": "^6.7.2",
