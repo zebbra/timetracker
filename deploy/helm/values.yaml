@@ -25,7 +25,7 @@ backend:
 
   env:
     PORT: "3000"
-    DEBUG: "*,-loopback:connector:mongodb*,-loopback:security*,-strong-globalize,-loopback:datasource,-loopback:juggler*,-express-router,-compression"
+    DEBUG: "*,-loopback:connector:mongodb*,-loopback:security*,-strong-globalize,-loopback:datasource,-loopback:juggler*,-express:router,-compression"
 
   resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
