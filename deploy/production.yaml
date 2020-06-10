@@ -1,5 +1,8 @@
 fullnameOverride: timetracker
 
+image:
+  tag: git-9966713
+
 frontend:
   env:
     TIMETRACKER_BACKEND_URL: https://timetracker.medi.zebbra.ch
