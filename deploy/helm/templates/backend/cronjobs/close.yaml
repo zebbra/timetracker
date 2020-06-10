@@ -1,14 +1,14 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: {{ include "medi-timetracker.fullname" . }}-backup
+  name: {{ include "medi-timetracker.fullname" . }}-close
   labels:
     {{- include "medi-timetracker.labels" . | nindent 4 }}
-    app.kubernetes.io/component: cronjob-backup
+    app.kubernetes.io/component: cronjob-close
 spec:
-  schedule: "{{ .Values.cronjobs.backup.schedule }}"
+  schedule: "{{ .Values.cronjobs.close.schedule }}"
   concurrencyPolicy: Forbid
-  # suspend: {{ .Values.cronjobs.backup.suspend }}
+  # suspend: {{ .Values.cronjobs.close.suspend }}
   failedJobsHistoryLimit: 5
   successfulJobsHistoryLimit: 5
   jobTemplate:
@@ -30,4 +30,4 @@ spec:
                 - name: {{ $name }}
                   value: {{ $value | quote }}
               {{- end }}
-              args: ['backend', 'cron:backup']
+              args: ['backend', 'cron:close']
