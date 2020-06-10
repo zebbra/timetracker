@@ -42,7 +42,7 @@ spec:
             - name: {{ $name }}
               value: {{ $value | quote }}
           {{- end }}
-          args: ['backend', 'start:server-prod']
+          args: ['backend', 'start:prod']
           ports:
             - name: http
               containerPort: {{ .Values.backend.env.PORT }}
