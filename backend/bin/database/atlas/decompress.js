@@ -16,7 +16,7 @@ function run(file, callback) {
 function _decompress(src, dest, callback) {
   debug(`Decompress ${src} to ${dest}`);
   return targz.decompress({ src, dest }, err => {
-    callback(err, dest + "backup/export", dest);
+    callback(err, `${dest}backup/export`, dest);
     debug(`Cleanup ${src}`);
     fs.unlink(src, err => err && debug(err));
   });
@@ -28,15 +28,15 @@ function _untar(src, dest, callback) {
   extract.on("error", err => callback(err));
   extract.on("finish", () => {
     callback(null, dest);
-    debug(`Cleanup ${dest + "backup"}`);
-    rimraf(dest + "backup", err => err && debug(err));
+    debug(`Cleanup ${dest}backup`);
+    rimraf(`${dest}backup`, err => err && debug(err));
   });
   return fs.createReadStream(src).pipe(extract);
 }
 
 function _rename(folder, callback) {
-  const oldPath = folder + "timetracker-server";
-  const newPath = folder + "timetracker";
+  const oldPath = `${folder}timetracker-server`;
+  const newPath = `${folder}timetracker`;
   debug(`Rename ${oldPath} to ${newPath}`);
   return fs.rename(oldPath, newPath, err => callback(err, newPath));
 }

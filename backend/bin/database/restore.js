@@ -8,7 +8,7 @@ const download = require("./amazon/download");
 const restore = require("./atlas/restore");
 
 function run() {
-  debug(`Starting database restore from amazon s3 to mongoDB atlas`);
+  debug("Starting database restore from amazon s3 to mongoDB atlas");
   const bucket = process.argv.slice(2)[0] || "medi-timetracker-backup";
 
   if (

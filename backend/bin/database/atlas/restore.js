@@ -14,14 +14,14 @@ function restore(file, bucket, callback) {
 function _prepareFile(file, bucket, callback) {
   if (bucket === "cloud.zebbra.ch.backups") {
     return decompress(file, (err, folder) => {
-      return callback(null, folder, bucket);
+      return callback(err, folder, bucket);
     });
   }
   return callback(null, file, bucket);
 }
 
 function _getArguments(path, bucket, callback) {
-  const arguments = [
+  const args = [
     "--host",
     process.env.ATLAS_HOST,
     "--ssl",
@@ -35,17 +35,17 @@ function _getArguments(path, bucket, callback) {
   ];
 
   if (bucket === "cloud.zebbra.ch.backups") {
-    ["--dir", path, "--db", "timetracker"].forEach(arg => arguments.push(arg));
+    ["--dir", path, "--db", "timetracker"].forEach(arg => args.push(arg));
   } else {
-    [`--archive=${path}`, "--gzip"].forEach(arg => arguments.push(arg));
+    [`--archive=${path}`, "--gzip"].forEach(arg => args.push(arg));
   }
 
-  return callback(null, path, arguments);
+  return callback(null, path, args);
 }
 
-function _runCommand(path, arguments, callback) {
-  debug(`Running mongorestore with ${arguments}`);
-  const restoreProcess = spawn("mongorestore", arguments);
+function _runCommand(path, args, callback) {
+  debug(`Running mongorestore with ${args}`);
+  const restoreProcess = spawn("mongorestore", args);
   restoreProcess.stdout.on("data", data => debug(data.toString()));
   restoreProcess.stderr.on("data", data => debug(data.toString()));
   restoreProcess.on("close", code => {
