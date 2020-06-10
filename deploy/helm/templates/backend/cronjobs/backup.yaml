@@ -1,0 +1,33 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ include "medi-timetracker.fullname" . }}-backup
+  labels:
+    {{- include "medi-timetracker.labels" . | nindent 4 }}
+    app.kubernetes.io/component: cronjob-backup
+spec:
+  schedule: "{{ .Values.cronjobs.backup.schedule }}"
+  concurrencyPolicy: Forbid
+  # suspend: {{ .Values.cronjobs.backup.suspend }}
+  failedJobsHistoryLimit: 5
+  successfulJobsHistoryLimit: 5
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: backend
+              securityContext:
+                {{- toYaml .Values.securityContext | nindent 16 }}
+              image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
+              envFrom:
+                - secretRef:
+                    name: {{ include "medi-timetracker.fullname" . }}-backend
+              env:
+              {{- range $name, $value := .Values.backend.env }}
+                - name: {{ $name }}
+                  value: {{ $value | quote }}
+              {{- end }}
+              args: ['backend', 'cron:backup']
