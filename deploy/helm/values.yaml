@@ -20,9 +20,8 @@ cronjobs:
   transfer:
     schedule: "5 23 31 12 *" # 1. Jan 00:05 CEST
 
-
 backend:
-  replicaCount: 1
+  replicaCount: 3
 
   env:
     PORT: "3000"
@@ -45,7 +44,7 @@ backend:
     port: 80
 
 frontend:
-  replicaCount: 1
+  replicaCount: 3
 
   env:
     PORT: 3000
