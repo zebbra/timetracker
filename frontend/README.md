@@ -31,9 +31,8 @@ Offline First, ServiceWorker, `styled-components`, redux-saga, FontFaceObserver<
 
 ## Quick start
 
-1. Clone this repo using `git clone --depth=1 https://github.com/zebbra-repos/Zeiterfassung-medi.git`
-2. Move to the appropriate directory: `cd zeiterfassung-medi`.<br />
-3. Run `npm run setup` in order to install dependencies and clean the
+1. Move to the appropriate directory: `cd frontend`.<br />
+1. Run `npm run setup` in order to install dependencies and clean the
    git repo.<br />
    _We auto-detect `yarn` for installing packages by default, if you wish to
    force `npm` usage do: `USE_YARN=false npm run setup`_<br />
