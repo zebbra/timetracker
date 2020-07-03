@@ -1,6 +1,6 @@
 {
   "frontend": {
-    "host": "timetracker.k8s.zebbra.ch",
+    "host": "timetracker.medi.zebbra.ch",
     "port": "443"
   }
 }
