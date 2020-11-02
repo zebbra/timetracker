@@ -297,8 +297,8 @@ const csvReporting = (models, params, callback) => {
       rows.push(
         genRow(
           {
-            label: "ev. Minus Militär und Diverses",
-            lookupKey: "Militär / Diverses",
+            label: "ev. Minus Militär, Mutterschaft und Diverses",
+            lookupKey: "Militär / Mutterschaft / Diverses",
             actual: reports.totalMixedActual,
             target: reports.totalMixedTarget,
             sub: "Total Jahresarbeitszeit"

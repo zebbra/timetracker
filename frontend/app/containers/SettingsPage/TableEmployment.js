@@ -61,7 +61,7 @@ class EmploymentSettingTable extends React.PureComponent {
                 <td className={'column-2'}></td>
               </tr>
               <tr>
-                <td className={'column-0'}>Militär und Diverses</td>
+                <td className={'column-0'}>Militär, Mutterschaft und Diverses</td>
                 <td className={'column-1'}>{this.props.profile.plannedMixed.toFixed(2)}</td>
                 <td className={'column-2'}></td>
               </tr>

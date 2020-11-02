@@ -5,7 +5,7 @@ const DATE_KEY_FORMAT = "YYYYMMDD";
 const LABEL_TO_PROFILE_LOOKUP = {
   Ferien: "plannedVacations",
   Treueprämien: "plannedPremiums",
-  "Militär / Diverses": "plannedMixed",
+  "Militär / Mutterschaft / Diverses": "plannedMixed",
   "Bew. Nachqual.": "plannedQuali",
   "Besondere Abwesenheiten": "plannedSpecialAbsences",
   Krankheit: "plannedIllness"

@@ -78,7 +78,7 @@ const fetchAll = (models, params, callback) => {
         Ferien: {
           actual: 0
         },
-        "Militär / Diverses": {
+        "Militär / Mutterschaft / Diverses": {
           actual: 0
         },
         "Bew. Nachqual.": {
@@ -141,8 +141,10 @@ const fetchAll = (models, params, callback) => {
         indicators.Ferien.transferGrantedVacationsHours;
       const totalTransferVacationsActual = 0;
 
-      const totalMixedTarget = indicators["Militär / Diverses"].targetHours;
-      const totalMixedActual = indicators["Militär / Diverses"].actualHours;
+      const totalMixedTarget =
+        indicators["Militär / Mutterschaft / Diverses"].targetHours;
+      const totalMixedActual =
+        indicators["Militär / Mutterschaft / Diverses"].actualHours;
 
       const totalQualiTarget = indicators["Bew. Nachqual."].targetHours;
       const totalQualiActual = indicators["Bew. Nachqual."].actualHours;

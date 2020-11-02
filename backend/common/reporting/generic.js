@@ -173,7 +173,7 @@ const genericReporting = (models, params, callback) => {
         ""
       ],
       [
-        "ev. Minus Militär und Diverses",
+        "ev. Minus Militär, Mutterschaft und Diverses",
         null,
         reports.totalMixedTarget,
         reports.totalMixedActual,

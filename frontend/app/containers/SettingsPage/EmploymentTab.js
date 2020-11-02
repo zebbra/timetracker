@@ -138,7 +138,7 @@ export class EmploymentTab extends React.PureComponent {
               },
               { key: 'plannedMixed',
                 boxes: [
-                  { width: 4 / 5, label: 'Bezeichnung', value: 'Militär und Diverses', align: 'left' },
+                  { width: 4 / 5, label: 'Bezeichnung', value: 'Militär, Mutterschaft und Diverses', align: 'left' },
                   { width: 1 / 5, label: 'Tage', value: profile.plannedMixed.toString(), align: 'right', name: 'plannedMixed' },
                 ],
               },

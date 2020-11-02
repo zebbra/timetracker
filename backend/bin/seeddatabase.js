@@ -99,7 +99,7 @@ ds.automigrate([...defaultModels, ...customModels], err => {
         .toDate()
     },
     {
-      label: "Militär / Diverses",
+      label: "Militär / Mutterschaft / Diverses",
       type: "static",
       unit: "d",
       start: moment()

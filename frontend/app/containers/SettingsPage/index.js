@@ -97,7 +97,7 @@ export class SettingsPage extends React.PureComponent {
         rows.push(emptyRow);
         rows.push(['Geplante Abwesenheiten', 'Tage', 'Stunden']);
         rows.push(['Ferien', this.props.Settings.profile.plannedVacations.toFixed(2), null]);
-        rows.push(['Militär und Diverses', this.props.Settings.profile.plannedMixed.toFixed(2), null]);
+        rows.push(['Militär, Mutterschaft und Diverses', this.props.Settings.profile.plannedMixed.toFixed(2), null]);
         rows.push(['Bewilligte Nachqual.', null, this.props.Settings.profile.plannedQuali.toFixed(2)]);
         rows.push(['Treueprämien', this.props.Settings.profile.plannedPremiums.toFixed(2), null]);
 
