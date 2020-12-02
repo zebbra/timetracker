@@ -39,7 +39,7 @@
   "Email": {
     "dataSource": "emailDS",
     "options": {
-      "from": "noreply@medi.ch"
+      "from": "noreply@timetracker.medi.zebbra.ch"
     }
   },
   "user": {

@@ -103,7 +103,7 @@ const closeAllModels = async () => {
         }
 
         const options = {
-          from: "noreply@medi.ch",
+          from: "noreply@timetracker.medi.zebbra.ch",
           to: "devops@zebbra.ch",
           subject: "Zeiterfassung-medi cronjob report",
           html
