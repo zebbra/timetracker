@@ -21,10 +21,10 @@ import {
 
 export default function CurrentUser(Component) {
   function PersonalisedComponent(props) {
-    const isImpersonated = props.roles.includes('impersonated');
+    const isSuperAdmin = props.roles.includes('super-admin') || props.originRoles.includes('super-admin');
+    const isImpersonated = !isSuperAdmin && props.roles.includes('impersonated');
     const isUser = props.roles.includes('user');
     const isAdmin = props.roles.includes('admin');
-    const isSuperAdmin = props.roles.includes('super-admin') || props.originRoles.includes('super-admin');
     const isTeamleader = props.roles.includes('teamleader') || props.originRoles.includes('teamleader');
 
     return (<Component

@@ -30,7 +30,11 @@ function download(bucket, callback) {
 }
 
 function _latest(files, callback) {
-  const file = files[0];
+  const sortedFiles = files.sort(
+    (a, b) =>
+      new Date(b.LastModified).getTime() - new Date(a.LastModified).getTime()
+  );
+  const file = sortedFiles[0];
   debug(`Found latest file ${file.Key}`);
   callback(null, file);
 }
