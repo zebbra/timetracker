@@ -3,6 +3,7 @@ const moment = require("moment-timezone");
 const Async = require("async");
 const _ = require("lodash");
 
+const config = require("../../server/model-config.json");
 const app = require("../../server/server");
 
 const YEAR_MODELS = ["employment-profile", "setpoint"];
@@ -103,7 +104,7 @@ const closeAllModels = async () => {
         }
 
         const options = {
-          from: "noreply@timetracker.medi.zebbra.ch",
+          from: config.Email.options.from,
           to: "devops@zebbra.ch",
           subject: "Zeiterfassung-medi cronjob report",
           html

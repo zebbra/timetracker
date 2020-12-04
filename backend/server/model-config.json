@@ -38,6 +38,7 @@
   },
   "Email": {
     "dataSource": "emailDS",
+    "public": false,
     "options": {
       "from": "noreply@timetracker.medi.zebbra.ch"
     }
