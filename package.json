@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "loopback-connector-mailgun": "^0.0.13"
+  }
+}

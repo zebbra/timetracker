@@ -86,23 +86,31 @@ module.exports = User => {
   // send password reset link when requested
   User.on("resetPasswordRequest", info => {
     const { host, port } = User.app.settings.frontend;
-    const url = `https://${host}${port ? `:${port}` : ""}/reset?token=${
+    const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
+    const url = `${protocol}://${host}${port ? `:${port}` : ""}/reset?token=${
       info.accessToken.id
     }`;
     const text = `Klicke auf folgenden Link um dein Passwort zurückzusetzen: ${url}`;
 
-    const options = {
-      from: config.Email.options.from,
-      to: info.email,
-      subject: "Passwort zurücksetzen",
-      text
-    };
+    if (
+      process.env.NODE_ENV !== "production" ||
+      process.env.STAGING === "true"
+    ) {
+      debug(text);
+    } else {
+      const options = {
+        from: config.Email.options.from,
+        to: info.email,
+        subject: "Passwort zurücksetzen",
+        text
+      };
 
-    User.app.models.Email.send(options, err => {
-      if (err) {
-        debug(err);
-      }
-    });
+      User.app.models.Email.send(options, err => {
+        if (err) {
+          debug(err);
+        }
+      });
+    }
   });
 
   /**

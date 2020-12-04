@@ -15,19 +15,8 @@
   },
   "emailDS": {
     "name": "emailDS",
-    "connector": "mail",
-    "transports": [{
-      "type": "smtp",
-      "host": "smtp.sendgrid.net",
-      "secure": true,
-      "port": 465,
-      "tls": {
-        "rejectUnauthorized": false
-      },
-      "auth": {
-        "user": "apikey",
-        "pass": "secret"
-      }
-    }]
+    "connector": "loopback-connector-mailgun",
+    "apikey": "foo",
+    "domain": "foo"
   }
 }
