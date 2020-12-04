@@ -1,0 +1,26 @@
+version: "3"
+services:
+  mail:
+    image: bytemark/smtp
+    container_name: mail
+    restart: always
+
+  backend:
+    image: timetracker
+    container_name: backend
+    restart: always
+    command: /bin/bash -c 'cd backend && yarn start:prod'
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=*,-loopback:connector:mongodb*,-loopback:security*,-strong-globalize,-loopback:datasource,-loopback:juggler*,-express:router,-compression
+
+  frontend:
+    image: timetracker
+    container_name: frontend
+    restart: always
+    command: /bin/bash -c 'cd frontend && yarn start:prod'
+    ports:
+      - "3000:3000"
+    environment:
+      - DEBUG=*,-babel

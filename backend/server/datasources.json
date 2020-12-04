@@ -15,8 +15,17 @@
   },
   "emailDS": {
     "name": "emailDS",
-    "connector": "loopback-connector-mailgun",
-    "apikey": "foo",
-    "domain": "foo"
+    "connector": "mail",
+    "transports": [
+      {
+        "type": "smtp",
+        "host": "mail",
+        "secure": false,
+        "port": 25,
+        "tls": {
+          "rejectUnauthorized": false
+        }
+      }
+    ]
   }
 }

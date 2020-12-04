@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "medi-timetracker.fullname" . }}-mail
+  labels:
+    {{- include "medi-timetracker.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.mail.service.type }}
+  ports:
+    - port: {{ .Values.mail.service.port }}
+      targetPort: smtp
+      name: smtp
+  selector:
+    {{- include "medi-timetracker.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: mail

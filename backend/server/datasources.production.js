@@ -7,8 +7,17 @@ module.exports = {
   },
   emailDS: {
     name: "emailDS",
-    connector: "loopback-connector-mailgun",
-    apikey: process.env.MAILGUN_API_KEY,
-    domain: "sandbox1f404105e3f742cb84d090f69e5cc455.mailgun.org"
+    connector: "mail",
+    transports: [
+      {
+        type: "smtp",
+        host: process.env.SMTP_HOST,
+        secure: false,
+        port: 25,
+        tls: {
+          rejectUnauthorized: false
+        }
+      }
+    ]
   }
 };

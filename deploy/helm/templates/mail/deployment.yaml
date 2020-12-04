@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "medi-timetracker.fullname" . }}-mail
+  labels:
+    {{- include "medi-timetracker.labels" . | nindent 4 }}
+    app.kubernetes.io/component: mail
+spec:
+  replicas: {{ .Values.mail.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "medi-timetracker.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: mail
+  template:
+    metadata:
+    {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      labels:
+        {{- include "medi-timetracker.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: mail
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "medi-timetracker.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: mail
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "bytemark/smtp"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          {{- range $name, $value := .Values.mail.env }}
+            - name: {{ $name }}
+              value: {{ $value | quote }}
+          {{- end }}
+          ports:
+            - name: smtp
+              containerPort: {{ .Values.mail.env.PORT }}
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.mail.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

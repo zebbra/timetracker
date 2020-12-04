@@ -20,11 +20,21 @@ cronjobs:
   transfer:
     schedule: "5 23 31 12 *" # 1. Jan 00:05 CEST
 
+mail:
+  replicaCount: 2
+  resources: {}
+  env:
+    PORT: "25"
+  service:
+    type: ClusterIP
+    port: 25
+
 backend:
   replicaCount: 3
 
   env:
     PORT: "3000"
+    SMTP_HOST: "timetracker-mail"
     DEBUG: "*,-loopback:connector:mongodb*,-loopback:security*,-strong-globalize,-loopback:datasource,-loopback:juggler*,-express:router,-compression"
 
   resources: {}
