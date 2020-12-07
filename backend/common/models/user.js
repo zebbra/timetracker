@@ -90,7 +90,8 @@ module.exports = User => {
     const url = `${protocol}://${host}${port ? `:${port}` : ""}/reset?token=${
       info.accessToken.id
     }`;
-    const text = `Klicke auf folgenden Link um dein Passwort zurückzusetzen: ${url}`;
+    const text = "Klicke auf folgenden Link um dein Passwort zurückzusetzen:";
+    const html = `<p>${text}</p><a href="${url}">${url}</a>`;
 
     if (
       process.env.NODE_ENV !== "production" ||
@@ -102,7 +103,8 @@ module.exports = User => {
         from: config.Email.options.from,
         to: info.email,
         subject: "Passwort zurücksetzen",
-        text
+        text,
+        html
       };
 
       User.app.models.Email.send(options, err => {

@@ -14,6 +14,7 @@ services:
       - "8000:8000"
     environment:
       - DEBUG=*,-loopback:connector:mongodb*,-loopback:security*,-strong-globalize,-loopback:datasource,-loopback:juggler*,-express:router,-compression
+      - NEW_RELIC_KEY=foo
 
   frontend:
     image: timetracker
