@@ -14,10 +14,13 @@ const sleep = ms => {
 
 const yearTransition = async () => {
   const startOfYear = moment()
+    .add(1, "d")
     .subtract(1, "year")
     .startOf("year");
   const endOfYear = startOfYear.clone().endOf("year");
-  const year = moment().year();
+  const year = moment()
+    .add(1, "d")
+    .year();
   const successfull = [];
   const failed = [];
   const defaultProfile = {
@@ -30,7 +33,7 @@ const yearTransition = async () => {
     transferGrantedVacations: 0,
     transferGrantedOvertime: 0,
     manualCorrection: 0,
-    year: moment().year(),
+    year: year,
     closed: false
   };
 
