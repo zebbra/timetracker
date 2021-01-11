@@ -1,8 +1,9 @@
-const debug = require("debug")("cronjobs");
+const debug = require("debug")("cronjobs:transfer");
 const moment = require("moment-timezone");
 const Async = require("async");
 const _ = require("lodash");
 
+const config = require("../server/model-config.json");
 const app = require("../server/server");
 const reporting = require("../common/reporting");
 const formatters = require("../common/formatters");
@@ -23,15 +24,8 @@ const yearTransition = async () => {
   const successfull = [];
   const failed = [];
   const defaultProfile = {
-    plannedVacations: 0,
-    plannedMixed: 0,
-    plannedQuali: 0,
-    plannedPremiums: 0,
     transferTotalLastYear: 0,
     transferOvertime: 0,
-    transferGrantedVacations: 0,
-    transferGrantedOvertime: 0,
-    manualCorrection: 0,
     year: year,
     closed: false
   };
@@ -121,8 +115,22 @@ const yearTransition = async () => {
                           })
                         );
 
-                        successfull.push(
-                          `${user.username}: ${JSON.stringify(profile)}`
+                        app.models["employment-profile"].upsert(
+                          profile,
+                          upserError => {
+                            if (upserError) {
+                              debug(
+                                `job=yearTransition user=${user.id} action=createProfile status=failed error=${findError}`
+                              );
+                              failed.push(
+                                `${user.username}: ${upserError.message}`
+                              );
+                            } else {
+                              successfull.push(
+                                `${user.username}: ${JSON.stringify(profile)}`
+                              );
+                            }
+                          }
                         );
                       }
 
@@ -137,8 +145,39 @@ const yearTransition = async () => {
             debug(
               `job=yearTransition status=done successfull=${successfull.length} failed=${failed.length}`
             );
-            // eslint-disable-next-line no-process-exit
-            process.exit(0);
+
+            if (process.env.NODE_ENV === "production") {
+              let html =
+                "<h2>Successfully transfered the following users</h2><ul>";
+              successfull.forEach(user => {
+                html += `<li>${user}</li>`;
+              });
+              html += "</ul>";
+
+              if (failed.length > 0) {
+                html += "<h2>Failed to transfer the following users</h2><ul>";
+                failed.forEach(user => {
+                  html += `<li>${user}</li>`;
+                });
+                html += "</ul>";
+              }
+
+              const options = {
+                from: config.Email.options.from,
+                to: "devops@zebbra.ch",
+                subject: "Zeiterfassung-medi cronjob report",
+                html
+              };
+
+              app.models.Email.send(options, mailErr => {
+                if (mailErr) {
+                  debug(mailErr);
+                }
+                process.exit(0);
+              });
+            } else {
+              process.exit(0);
+            }
           }
         );
       }
@@ -146,4 +185,6 @@ const yearTransition = async () => {
   );
 };
 
-yearTransition();
+if (require.main === module) {
+  yearTransition();
+}
