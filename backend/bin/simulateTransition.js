@@ -1,12 +1,12 @@
 const debug = require("debug")("cronjobs");
-const path = require("path");
 const moment = require("moment-timezone");
-const async = require("async");
+const Async = require("async");
 const _ = require("lodash");
 
-const app = require(path.resolve(__dirname, "../server/server"));
-const reporting = require(path.resolve(__dirname, "../common/reporting"));
-const formatters = require(path.resolve(__dirname, "../common/formatters"));
+const config = require("../server/model-config.json");
+const app = require("../server/server");
+const reporting = require("../common/reporting");
+const formatters = require("../common/formatters");
 
 const sleep = ms => {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -14,10 +14,13 @@ const sleep = ms => {
 
 const yearTransition = async () => {
   const startOfYear = moment()
+    .add(1, "d")
     .subtract(1, "year")
     .startOf("year");
   const endOfYear = startOfYear.clone().endOf("year");
-  const year = moment().year();
+  const year = moment()
+    .add(1, "d")
+    .year();
   const successfull = [];
   const failed = [];
   const defaultProfile = {
@@ -30,7 +33,7 @@ const yearTransition = async () => {
     transferGrantedVacations: 0,
     transferGrantedOvertime: 0,
     manualCorrection: 0,
-    year: moment().year(),
+    year: year,
     closed: false
   };
 
@@ -52,6 +55,7 @@ const yearTransition = async () => {
     (err, dbUsers) => {
       if (err) {
         debug(`job=yearTransition status=failed error=${err}`);
+        throw err;
       } else {
         const users = _.chain(dbUsers)
           .map(user => user.toJSON())
@@ -61,7 +65,7 @@ const yearTransition = async () => {
           `job=yearTransition going to transfer count=${users.length} users`
         );
 
-        async.eachSeries(
+        Async.eachSeries(
           users,
           (user, next) => {
             reporting.timeseriesReporting(
