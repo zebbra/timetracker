@@ -1,8 +1,12 @@
+const _ = require("lodash");
 const logError = require("debug")("app:error:track");
+const logInfo = require("debug")("app:track");
 const moment = require("moment-timezone");
 const errors = require("../errors");
 const duration = require("../duration");
 const validators = require("../validators");
+const reporting = require("../reporting");
+const formatters = require("../formatters");
 
 const SKPI_PARSE_UNITS = ["r", "t"];
 
@@ -197,6 +201,103 @@ module.exports = Track => {
     }
   });
 
+  Track.observe("after save", (ctx, next) => {
+    yearTransition(ctx.instance.date, ctx.instance.userId);
+    return next();
+  });
+
+  Track.observe("after delete", (ctx, next) => {
+    yearTransition(ctx.options.date, ctx.options.userId);
+    return next();
+  });
+
+  function yearTransition(date, userId) {
+    const trackFromLastYear = moment(date).isSame(
+      moment().subtract(1, "year"),
+      "year"
+    );
+    const isJanuaryOrFebruary = moment().month() < 2;
+
+    if (trackFromLastYear && isJanuaryOrFebruary) {
+      const startOfYear = moment()
+        .subtract(1, "year")
+        .startOf("year");
+      const endOfYear = startOfYear.clone().endOf("year");
+      const year = moment().year();
+      const defaultProfile = {
+        transferTotalLastYear: "0",
+        transferOvertime: "0",
+        year: year
+      };
+
+      Track.app.models.user.findById(userId, (err, user) => {
+        if (err) {
+          logError(err);
+        } else {
+          reporting.timeseriesReporting(
+            Track.app.models,
+            { start: startOfYear, end: endOfYear, userId: user.id },
+            (reportingErr, report) => {
+              if (reportingErr) {
+                logError(reportingErr);
+              } else {
+                const profile = _.clone(defaultProfile);
+                profile.userId = user.id;
+
+                if (report.total.target > 0) {
+                  profile.transferTotalLastYear = report.total.target;
+                }
+                if (report.total.currentSaldo > 0) {
+                  if (
+                    report.total.currentSaldo >
+                    profile.transferTotalLastYear / 100
+                  ) {
+                    profile.transferOvertime = formatters.asDecimal(
+                      profile.transferTotalLastYear / 100
+                    );
+                  } else {
+                    profile.transferOvertime = report.total.currentSaldo;
+                  }
+                }
+
+                Track.app.models["employment-profile"].findOne(
+                  {
+                    where: { userId: user.id, year }
+                  },
+                  (findError, dbProfile) => {
+                    if (findError) {
+                      logError(findError);
+                    } else {
+                      if (dbProfile) {
+                        logInfo(
+                          "update year transition",
+                          Object.assign({
+                            firstName: user.firstName,
+                            lastName: user.lastName,
+                            username: user.username,
+                            ...profile
+                          })
+                        );
+
+                        dbProfile.updateAttributes(
+                          profile,
+                          (updateError, result) => {
+                            if (updateError) logError(updateError);
+                            logInfo(result);
+                          }
+                        );
+                      }
+                    }
+                  }
+                );
+              }
+            }
+          );
+        }
+      });
+    }
+  }
+
   /**
    * Before delete
    *   - check for closed date
@@ -222,6 +323,8 @@ module.exports = Track => {
         ) {
           next(errors.RECORD_CLOSED_ERROR);
         } else {
+          ctx.options.date = track.date;
+          ctx.options.userId = track.userId;
           next();
         }
       }
