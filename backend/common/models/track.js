@@ -203,7 +203,6 @@ module.exports = Track => {
 
   Track.observe("after save", (ctx, next) => {
     if (ctx.instance) {
-
       yearTransition(ctx.instance.date, ctx.instance.userId);
     }
     return next();
