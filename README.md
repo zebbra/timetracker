@@ -14,7 +14,7 @@ Combined repository for the timetracker application developed for [medi](https:/
 1. Create shared namespace
 
    ```bash
-   kubectl create ns medi-timetracker
+   kubectl create ns medi
    ```
 
 1. Copy secrets from 1Password `medi-secrets` to
@@ -24,7 +24,7 @@ Combined repository for the timetracker application developed for [medi](https:/
 1. Deploy secrets
 
    ```bash
-   kubectl apply -n medi-timetracker -f deploy/secrets.yaml
+   kubectl apply -n medi -f deploy/secrets.yaml
    ```
 
 1. Deploy Helm chart
