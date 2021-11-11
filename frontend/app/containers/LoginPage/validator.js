@@ -8,7 +8,7 @@ function validate(values) {
   if (/@/.test(values.get('value'))) {
     Object.assign(errors, email(values, 'value'));
   } else {
-    Object.assign(errors, alphaNumericExtendedString(values, 'value', 3, 15));
+    Object.assign(errors, alphaNumericExtendedString(values, 'value', 3, 52));
   }
 
   return errors;

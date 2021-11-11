@@ -5,10 +5,10 @@ function validate(values) {
   const requiredFields = ['username', 'email', 'firstName', 'lastName'];
 
   Object.assign(errors, required(values, requiredFields));
-  Object.assign(errors, alphaNumericExtendedString(values, 'username', 3, 15));
+  Object.assign(errors, alphaNumericExtendedString(values, 'username', 3, 104));
   Object.assign(errors, email(values, 'email'));
-  Object.assign(errors, nameRegexString(values, 'firstName', 3, 50));
-  Object.assign(errors, nameRegexString(values, 'lastName', 3, 50));
+  Object.assign(errors, nameRegexString(values, 'firstName', 3, 52));
+  Object.assign(errors, nameRegexString(values, 'lastName', 3, 52));
 
   return errors;
 }

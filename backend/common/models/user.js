@@ -15,11 +15,11 @@ module.exports = User => {
     with: validators.ALPHA_NUMERIC_EXTENDED_REGEX
   });
   User.validatesPresenceOf("username");
-  User.validatesLengthOf("username", { min: 3, max: 15 });
+  User.validatesLengthOf("username", { min: 3, max: 104 });
   User.validatesFormatOf("firstName", { with: validators.NAME_REGEX });
-  User.validatesLengthOf("firstName", { min: 3, max: 50 });
+  User.validatesLengthOf("firstName", { min: 3, max: 52 });
   User.validatesFormatOf("lastName", { with: validators.NAME_REGEX });
-  User.validatesLengthOf("lastName", { min: 3, max: 50 });
+  User.validatesLengthOf("lastName", { min: 3, max: 52 });
   User.validatesLengthOf("email", { max: 100 });
   User.validatesFormatOf("email", { with: validators.VALID_EMAIL_DOMAINS });
 
