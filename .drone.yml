@@ -1,4 +1,5 @@
 kind: pipeline
+type: kubernetes
 name: test
 
 trigger:
@@ -23,6 +24,7 @@ steps:
     depends_on: [clone]
 ---
 kind: pipeline
+type: kubernetes
 name: build
 
 trigger:
@@ -41,8 +43,7 @@ steps:
       tags: builder
       cache_from:
         - quay.io/zebbra/timetracker:builder
-      custom_labels: [quay.expires-after=30d]
-      mtu: 1316
+      mtu: 1300
 
   - name: release
     image: plugins/docker
@@ -55,9 +56,10 @@ steps:
       cache_from:
         - quay.io/zebbra/timetracker:builder
         - quay.io/zebbra/timetracker:latest
-      mtu: 1316
+      mtu: 1300
 ---
 kind: pipeline
+type: kubernetes
 name: deploy
 
 depends_on:
@@ -74,10 +76,10 @@ steps:
     settings:
       kube_api_server: https://kubernetes.default
       kube_token: { from_secret: kubernetes_token }
+      kube_certificate: { from_secret: kubernetes_certificate }
       chart: ./deploy/helm
       release: timetracker
       namespace: medi
       values: image.tag=git-${DRONE_COMMIT_SHA:0:7}
       values_files: [deploy/production.yaml]
       reuse_values: false
-      skip_tls_verify: true
