@@ -20,9 +20,10 @@ export function* fetchAllDataSaga() {
   const startOfYear = selectedDate.clone().startOf('year').startOf('day').toDate();
   const endOfWeek = selectedDate.clone().endOf('isoweek').endOf('day').toDate();
   const endOfYear = selectedDate.clone().endOf('year').endOf('day').toDate();
+  const endOfYearAndWeek = selectedDate.clone().endOf('year').endOf('week').endOf('day').toDate();
 
   const holidaysQuery = JSON.stringify({ where: {
-    date: { between: [startOfYear, endOfYear] },
+    date: { between: [startOfYear, endOfYearAndWeek] },
   } });
 
   const elementsQuery = JSON.stringify({

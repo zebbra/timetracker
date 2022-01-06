@@ -22,6 +22,7 @@
     "db:seed": "DEBUG=db:* node ./bin/seeddatabase.js",
     "db:backup": "DEBUG=* node bin/database/backup.js",
     "db:restore": "DEBUG=* node bin/database/restore.js",
+    "db:restore:local": "DEBUG=* node bin/database/restore.js medi-timetracker-backup local",
     "cron:backup": "yarn db:backup",
     "cron:transfer": "DEBUG=cronjobs* node ./bin/cronjobs/transfer.js",
     "cron:close": "DEBUG=cronjobs* node ./bin/cronjobs/close.js",

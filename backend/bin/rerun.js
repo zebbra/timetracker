@@ -1,3 +1,12 @@
+/**
+ * If you run this skript locally, make sure to adapt datasource.json file accordingly:
+ *
+ *  "url": "mongodb+srv://user:password@medi-timetracker.ounel.mongodb.net/timetracker?retryWrites=true&w=majority",
+ *  "name": "mongoDS",
+ *  "protocol": "mongodb+srv",
+ *  "connector": "mongodb"
+ */
+
 const debug = require("debug")("cronjobs:transfer");
 const moment = require("moment-timezone");
 const Async = require("async");
@@ -36,6 +45,11 @@ const yearTransition = async () => {
   }
   debug("============ APP STARTED ============");
 
+  debug("====== USING VARIABLES =========");
+  debug(`startOfYear: ${startOfYear}`);
+  debug(`endOfYear: ${endOfYear}`);
+  debug(`year: ${year}`);
+
   app.models.user.find(
     {
       include: {
@@ -52,7 +66,12 @@ const yearTransition = async () => {
       } else {
         const users = _.chain(dbUsers)
           .map(user => user.toJSON())
-          .filter(user => !_.find(user.roles, { name: "admin" }))
+          .filter(
+            user =>
+              !_.find(user.roles, {
+                name: "admin"
+              })
+          )
           .value();
         debug(
           `job=yearTransition going to transfer count=${users.length} users`
@@ -63,7 +82,11 @@ const yearTransition = async () => {
           (user, next) => {
             reporting.timeseriesReporting(
               app.models,
-              { start: startOfYear, end: endOfYear, userId: user.id },
+              {
+                start: startOfYear,
+                end: endOfYear,
+                userId: user.id
+              },
               (reportingErr, report) => {
                 if (reportingErr) {
                   debug(
@@ -92,7 +115,10 @@ const yearTransition = async () => {
                     }
                   }
 
-                  const where = { userId: user.id, year };
+                  const where = {
+                    userId: user.id,
+                    year
+                  };
                   app.models["employment-profile"].findOne(
                     { where },
                     (findError, dbEntry) => {

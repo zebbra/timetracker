@@ -6,10 +6,12 @@ const rimraf = require("rimraf");
 
 const download = require("./amazon/download");
 const restore = require("./atlas/restore");
+const restoreLocal = require("./local/restore");
 
 function run() {
   debug("Starting database restore from amazon s3 to mongoDB atlas");
   const bucket = process.argv.slice(2)[0] || "medi-timetracker-backup";
+  const target = process.argv.slice(3)[0] || "atlas";
 
   if (
     ["medi-timetracker-backup", "cloud.zebbra.ch.backups"].indexOf(bucket) ===
@@ -21,7 +23,10 @@ function run() {
   Async.waterfall(
     [
       next => download(bucket, next),
-      (file, next) => restore(file, bucket, next),
+      (file, next) =>
+        target === "local"
+          ? restoreLocal(file, bucket, next)
+          : restore(file, bucket, next),
       (file, next) => _cleanup(file, bucket, next)
     ],
     err => {
