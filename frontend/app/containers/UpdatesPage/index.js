@@ -18,6 +18,20 @@ function UpdatesPage() {
       >
         <Card className="cardWrapper">
           <CardHeader
+            title="Version 2.6.0"
+            subtitle="17-01-2022"
+            actAsExpander
+            showExpandableButton
+          />
+          <CardText expandable>
+            <h3>Korrekturen</h3>
+            <List>
+              <ListItem disabled primaryText="Feiertage welche auf ein Wochenende fallen, werden neu nicht mehr in die Zeitrechnung einbezogen" />
+            </List>
+          </CardText>
+        </Card>
+        <Card className="cardWrapper">
+          <CardHeader
             title="Version 2.5.8"
             subtitle="12-03-2020"
             actAsExpander

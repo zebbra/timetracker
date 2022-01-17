@@ -169,6 +169,10 @@ const timeseriesReporting = (models, params, callback) => {
 
       // add the holidays to the lookup table (key is the date in the format YYYYMMDD)
       _.each(holidays, holiday => {
+        // skip holidays if they fall onto a weekend day
+        const dayOfWeek = moment(holiday.date).day();
+        if (dayOfWeek === 0 || dayOfWeek === 6) return;
+
         const key = moment(holiday.date).format(DATE_KEY_FORMAT);
         if (!tracks[key]) tracks[key] = [];
         tracks[key].push({

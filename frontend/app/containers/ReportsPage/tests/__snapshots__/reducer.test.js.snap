@@ -5,7 +5,7 @@ Object {
   "indicators": Array [],
   "loading": false,
   "profile": undefined,
-  "selectedYear": 2021,
+  "selectedYear": 2022,
   "timeseries": Array [],
 }
 `;
