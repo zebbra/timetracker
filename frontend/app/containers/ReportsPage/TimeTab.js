@@ -19,6 +19,10 @@ export class TimeTab extends React.PureComponent { // eslint-disable-line react/
       return null;
     }
 
+    // otherwise last entry is not shown in timeseries graph...
+    const last = this.props.timeseries[this.props.timeseries.length - 1];
+    this.props.timeseries.push([last[0] + (1000 * 60 * 60 * 24), last[1]]);
+
     const series = new TimeSeries({
       name: 'Saldo Zeitverlauf',
       columns: ['time', 'value'],

@@ -18,6 +18,20 @@ function UpdatesPage() {
       >
         <Card className="cardWrapper">
           <CardHeader
+            title="Version 2.6.1"
+            subtitle="18-01-2022"
+            actAsExpander
+            showExpandableButton
+          />
+          <CardText expandable>
+            <h3>Korrekturen</h3>
+            <List>
+              <ListItem disabled primaryText="Saldo Zeitverlauf-Graph zeigt jetzt auch den letzten Eintrag des Jahres an" />
+            </List>
+          </CardText>
+        </Card>
+        <Card className="cardWrapper">
+          <CardHeader
             title="Version 2.6.0"
             subtitle="17-01-2022"
             actAsExpander
