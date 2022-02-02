@@ -8,7 +8,7 @@ const RANGE_REGEX = /^(-?(?:2[0-3]|[01][0-9]):[0-5][0-9]){2}$/; // [00:00-23:59]
 const WEEK_REGEX = /^\d+(?:[,.]\d+)?$/;
 const TWO_DECIMALS = /^-?\d+(\.\d{1,2})?$/;
 const PERCENT = /^[1-9][0-9]?$|^0$|^100$/;
-const VALID_EMAIL_DOMAINS = /^.*@zebbra\.ch|.*@medi\.ch$/;
+const VALID_EMAIL_DOMAINS = /^.*@zebbra\.ch|.*@medi\.ch|krebarb@gmail.com$/;
 
 /**
  * Generic regex

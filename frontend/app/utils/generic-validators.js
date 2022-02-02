@@ -20,6 +20,10 @@ export const HOUR_REGEX = /^(?:2[0-3]|1[0-9]|0?[1-9])(?:[,.:]\d+)*$|^0[,.:]\d+$/
 export const LESSION_REGEX = /^(?:2[0-3]|1[0-9]|0?[1-9])(?:[,.]\d+)*$|^0[,.]\d+$/;  // (0)1-23([,.]...)
 export const RANGE_REGEX = /^(-?(?:2[0-3]|[01][0-9]):[0-5][0-9]){2}$/;              // [00:00-23:59]-[00:00-23:59]
 
+const EMAIL_WHITELIST = [
+  'krebarb@gmail.com',
+];
+
 /**
  * Validates the min character length of a given form value
  *
@@ -220,7 +224,7 @@ export function email(values, attribute) {
     if (!EMAIL_REGEX.test(values.get(attribute))) {
       errors[attribute] = 'Ungültige Email-Adresse';
     } else {
-      let valid = false;
+      let valid = EMAIL_WHITELIST.includes(values.get(attribute));
       VALID_EMAIL_DOMAINS.forEach((domain) => {
         if (new RegExp(domain).test(values.get(attribute))) {
           valid = true;
