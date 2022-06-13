@@ -1,6 +1,6 @@
 ### BUILD IMAGE
 
-FROM node:10.17.0-alpine3.10 as builder
+FROM node:16.15.1-alpine3.16 as builder
 WORKDIR /src
 ENV SENTRY_PUBLIC_DSN=https://ad6da002443048b7a79dad5c8b2b867c@sentry.zebbra.ch/10
 ENV TIMETRACKER_BACKEND_URL=https://timetracker.medi.zebbra.ch
@@ -16,7 +16,7 @@ RUN cd ./frontend && yarn build
 
 ### RUNTIME IMAGE
 
-FROM node:10.17.0-alpine3.10
+FROM node:16.15.1-alpine3.16
 WORKDIR /app
 ENV NODE_ENV=production
 

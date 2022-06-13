@@ -35,7 +35,7 @@ backend:
   env:
     PORT: "3000"
     SMTP_HOST: "timetracker-mail"
-    DEBUG: "*,-loopback:connector:mongodb*,-loopback:security*,-strong-globalize,-loopback:datasource,-loopback:juggler*,-express:router,-compression"
+    DEBUG: "app:*,-app:reporting:helpers"
 
   resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

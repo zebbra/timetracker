@@ -7,7 +7,7 @@ trigger:
 
 steps:
   - name: frontend
-    image: node:10.17.0-alpine3.10
+    image: node:16.15.1-alpine3.16
     commands:
       - cd frontend
       - yarn install --pure-lockfile
@@ -15,7 +15,7 @@ steps:
     depends_on: [clone]
 
   - name: backend
-    image: node:10.17.0-alpine3.10
+    image: node:16.15.1-alpine3.16
     commands:
       - cd backend
       - yarn install --pure-lockfile
