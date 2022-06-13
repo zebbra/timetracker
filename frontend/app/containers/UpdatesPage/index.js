@@ -18,6 +18,20 @@ function UpdatesPage() {
       >
         <Card className="cardWrapper">
           <CardHeader
+            title="Version 2.7.1"
+            subtitle="13-06-2022"
+            actAsExpander
+            showExpandableButton
+          />
+          <CardText expandable>
+            <h3>Erweiterungen</h3>
+            <List>
+              <ListItem disabled primaryText="Bei den Bemerkungen-Felder in der Sektion Leistungselemente wurden die Zahlen am Ende des Labels entfern" />
+            </List>
+          </CardText>
+        </Card>
+        <Card className="cardWrapper">
+          <CardHeader
             title="Version 2.7.0"
             subtitle="13-06-2022"
             actAsExpander
@@ -27,7 +41,7 @@ function UpdatesPage() {
             <h3>Erweiterungen</h3>
             <List>
               <ListItem disabled primaryText="Bei der Sektion Leistungselemente wurden drei neue Felder mit den Label Bemerkungen 2-4 hinzugefügt" />
-              <ListItem disabled primaryText="Diese Felder erscheinen auch beim CSV-Export, falls die entsprechenden Export-Einstellungen gesetzt sind." />
+              <ListItem disabled primaryText="Diese Felder erscheinen auch beim CSV-Export, falls die entsprechenden Export-Einstellungen gesetzt sind" />
               <ListItem disabled primaryText="Falls die Ordnung der Eingabefelder beim Reiter 'Zeit' durcheinander gerate ist, kann diese über die Sidebar-Einstellung 'Einstellungen zurücksetzen' zurückgesetzt werden" />
             </List>
           </CardText>

@@ -99,10 +99,18 @@ export class CalendarSettings extends React.PureComponent {
   }
 
   renderList(entries, sortable) {
+    function escapeLabel(label) {
+      if (label.startsWith('Bemerkungen')) {
+        return 'Bemerkungen';
+      }
+
+      return label;
+    }
+
     const SortableItem = SortableElement(({ element }) => (
       <section style={{ zIndex: 2 }}>
         <ListItem
-          primaryText={element.get('label')}
+          primaryText={escapeLabel(element.get('label'))}
           style={{ cursor: 'move' }}
           leftCheckbox={
             <Checkbox
@@ -145,7 +153,7 @@ export class CalendarSettings extends React.PureComponent {
         { entries.map((element, index) => (
           <ListItem
             key={`non-sortable-elment-${index}`}
-            primaryText={element.get('label')}
+            primaryText={escapeLabel(element.get('label'))}
             leftCheckbox={
               <Checkbox
                 checked={!element.get('hidden') && !element.get('hiddenWithTrack')}

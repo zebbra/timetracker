@@ -151,6 +151,14 @@ export class CalendarCell extends React.PureComponent {
   renderLabelCell() {
     const tooltipId = `label-tooltip-${this.props.element.get('id')}`;
 
+    function escapeLabel(label) {
+      if (label.startsWith('Bemerkungen')) {
+        return 'Bemerkungen';
+      }
+
+      return label;
+    }
+
     return (
       <LabelCell width="100%" is="section" className="calendar-cell-label">
         <Flex wrap align="center" justify="space-around" is="section" width="100%" px="10px">
@@ -161,7 +169,7 @@ export class CalendarCell extends React.PureComponent {
                 data-for={tooltipId} lines={2}
                 ellipsis={<span>...</span>}
               >
-                {this.props.element.get('label')}
+                {escapeLabel(this.props.element.get('label'))}
               </Truncate>
               :
               this.props.element.get('label').replace(/-\d/, '')
