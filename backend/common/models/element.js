@@ -19,7 +19,7 @@ module.exports = Element => {
       "Aufwand Weiterbildung und Dienstleistung"
     ]
   });
-  Element.validatesFormatOf("label", validators.NAME_REGEX);
+  Element.validatesFormatOf("label", validators.ALPHA_NUMERIC_EXTENDED_REGEX);
   Element.validatesLengthOf("label", { min: 3, max: 100 });
   Element.validatesInclusionOf("type", { in: ["static", "range", "dynamic"] });
   Element.validatesInclusionOf("unit", { in: ["d", "r", "h", "l", "n", "t"] });

@@ -5,7 +5,7 @@ Object {
   },
   "error": Object {},
   "info": Object {},
-  "latestVersion": "2.6.1",
+  "latestVersion": "2.7.0",
   "onboarded": true,
   "printing": false,
   "sidebarLeft": Object {
@@ -15,6 +15,6 @@ Object {
     "name": undefined,
     "show": false,
   },
-  "version": "2.6.1",
+  "version": "2.7.0",
 }
 `;

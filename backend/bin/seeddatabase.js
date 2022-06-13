@@ -355,6 +355,33 @@ function run() {
           .subtract(2, "year")
           .startOf("year")
           .toDate()
+      },
+      {
+        label: "Bemerkungen 2",
+        type: "dynamic",
+        unit: "t",
+        start: moment()
+          .subtract(2, "year")
+          .startOf("year")
+          .toDate()
+      },
+      {
+        label: "Bemerkungen 3",
+        type: "dynamic",
+        unit: "t",
+        start: moment()
+          .subtract(2, "year")
+          .startOf("year")
+          .toDate()
+      },
+      {
+        label: "Bemerkungen 4",
+        type: "dynamic",
+        unit: "t",
+        start: moment()
+          .subtract(2, "year")
+          .startOf("year")
+          .toDate()
       }
     ];
 

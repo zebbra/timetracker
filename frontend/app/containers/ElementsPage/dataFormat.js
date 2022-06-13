@@ -4,6 +4,7 @@ export const data = [
     name: 'project',
     label: 'Projekt',
     options: [
+      { value: 'Default', label: 'Default' },
       { value: 'Unterrichts-Pool', label: 'Unterrichts-Pool' },
       { value: 'Schulpool', label: 'Schulpool' },
       { value: 'Aufwand Weiterbildung und Dienstleistung', label: 'Aufwand Weiterbildung und Dienstleistung' },
@@ -20,6 +21,7 @@ export const data = [
     name: 'unit',
     label: 'Einheit',
     options: [
+      { value: 't', label: 'Text' },
       { value: 'h', label: 'Stunden' },
       { value: 'l', label: 'Lektionen' },
     ],

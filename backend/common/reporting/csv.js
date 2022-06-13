@@ -404,6 +404,16 @@ const csvReporting = (models, params, callback) => {
         rows.push(
           genRow(
             {
+              label: "Zeit",
+              lookupKey: "Bemerkungen",
+              unit: "t"
+            },
+            "hours"
+          )
+        );
+        rows.push(
+          genRow(
+            {
               label: "Leistungselemente",
               lookupKey: "Bemerkungen",
               unit: "t"
@@ -414,11 +424,31 @@ const csvReporting = (models, params, callback) => {
         rows.push(
           genRow(
             {
-              label: "Zeit",
-              lookupKey: "Bemerkungen",
+              label: "Leistungselemente",
+              lookupKey: "Bemerkungen 2",
               unit: "t"
             },
-            "hours"
+            "lecture"
+          )
+        );
+        rows.push(
+          genRow(
+            {
+              label: "Leistungselemente",
+              lookupKey: "Bemerkungen 3",
+              unit: "t"
+            },
+            "lecture"
+          )
+        );
+        rows.push(
+          genRow(
+            {
+              label: "Leistungselemente",
+              lookupKey: "Bemerkungen 4",
+              unit: "t"
+            },
+            "lecture"
           )
         );
       }
