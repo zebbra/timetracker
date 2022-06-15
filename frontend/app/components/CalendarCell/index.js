@@ -97,7 +97,15 @@ export class CalendarCell extends React.PureComponent {
   }
 
   renderTextCell(classes) {
-    const label = this.props.element.get('label');
+    function escapeLabel(label) {
+      if (label.startsWith('Bemerkungen')) {
+        return 'Bemerkungen';
+      }
+
+      return label;
+    }
+
+    const label = escapeLabel(this.props.element.get('label'));
     const value = this.props.element.getIn(['track', 'value']);
     const tooltipId = `note-tooltip-${this.props.element.get('dayOfWeek').getDay()}-${this.props.element.get('index')}`;
     const navigate = {
