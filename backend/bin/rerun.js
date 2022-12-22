@@ -95,7 +95,7 @@ const yearTransition = async () => {
                   failed.push(`${user.username}: ${reportingErr.message}`);
                   setTimeout(next, 100);
                 } else {
-                  const profile = _.clone(defaultProfile);
+                  const profile = _.cloneDeep(defaultProfile);
                   profile.userId = user.id;
 
                   if (report.total.target > 0) {
@@ -119,6 +119,11 @@ const yearTransition = async () => {
                     userId: user.id,
                     year
                   };
+                  debug(
+                    `employment-profile query for user=${
+                      user.id
+                    } query: ${JSON.stringify(where)}`
+                  );
                   app.models["employment-profile"].findOne(
                     { where },
                     (findError, dbEntry) => {

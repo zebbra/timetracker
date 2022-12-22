@@ -42,6 +42,11 @@ const yearTransition = async () => {
   }
   debug("============ APP STARTED ============");
 
+  debug("====== USING VARIABLES =========");
+  debug(`startOfYear: ${startOfYear}`);
+  debug(`endOfYear: ${endOfYear}`);
+  debug(`year: ${year}`);
+
   app.models.user.find(
     {
       include: {
@@ -78,7 +83,7 @@ const yearTransition = async () => {
                   failed.push(`${user.username}: ${reportingErr.message}`);
                   setTimeout(next, 100);
                 } else {
-                  const profile = _.clone(defaultProfile);
+                  const profile = _.cloneDeep(defaultProfile);
                   profile.userId = user.id;
 
                   if (report.total.target > 0) {
@@ -99,6 +104,11 @@ const yearTransition = async () => {
                   }
 
                   const where = { userId: user.id, year };
+                  debug(
+                    `employment-profile query for user=${
+                      user.id
+                    } query: ${JSON.stringify(where)}`
+                  );
                   app.models["employment-profile"].findOne(
                     { where },
                     (findError, dbEntry) => {
@@ -137,6 +147,23 @@ const yearTransition = async () => {
             debug(
               `job=yearTransition status=done successfull=${successfull.length} failed=${failed.length}`
             );
+            let html =
+              "<h2>Successfully transfered the following users</h2><ul>";
+            successfull.forEach(user => {
+              html += `<li>${user}</li>`;
+            });
+            html += "</ul>";
+
+            if (failed.length > 0) {
+              html += "<h2>Failed to transfer the following users</h2><ul>";
+              failed.forEach(user => {
+                html += `<li>${user}</li>`;
+              });
+              html += "</ul>";
+            }
+
+            debug(html);
+
             // eslint-disable-next-line no-process-exit
             process.exit(0);
           }
