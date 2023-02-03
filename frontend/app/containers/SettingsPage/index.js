@@ -213,7 +213,7 @@ export class SettingsPage extends React.PureComponent {
           tabs={tabs}
           tabsValue={this.props.Settings.component}
           selectedYear={this.props.Settings.selectedYear}
-          selectableYears={4}
+          selectableYears={moment().year() - moment().year(2018).year()}
           onYearSelect={this.props.setSelectedYear}
           hasDownloadIcon={hasDownloadIcon}
           downloadFormats={['pdf', 'csv']}

@@ -117,7 +117,7 @@ WeekNavigation.propTypes = {
 };
 
 WeekNavigation.defaultProps = {
-  minDate: moment().subtract(4, 'years').startOf('year').toDate(),
+  minDate: moment().year(2018).startOf('year').toDate(),
 };
 
 export default WeekNavigation;

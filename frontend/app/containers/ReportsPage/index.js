@@ -164,7 +164,7 @@ export class ReportsPage extends React.PureComponent {
           tabs={tabs}
           tabsValue={this.props.Reports.component}
           selectedYear={this.props.Reports.selectedYear}
-          selectableYears={this.props.Reports.component === 'export' ? 0 : 4}
+          selectableYears={this.props.Reports.component === 'export' ? 0 : moment().year() - moment().year(2018).year()}
           onYearSelect={this.props.setSelectedYear}
           hasDownloadIcon={hasDownloadIcon}
           downloadFormats={['pdf', 'csv']}
