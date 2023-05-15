@@ -1,0 +1,28 @@
+# Not part of the helm chart, but used to redirect traffic from the old domain to the new one
+# kubectl apply -f deploy/manifests/redirect.yaml
+
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: timetracker-redirect
+  namespace: medi
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: https://timetracker.medi.zebbra.ch/$1
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - timetracker.cloud.zebbra.ch
+      secretName: timetracker-cloud-tls
+  rules:
+    - host: timetracker.cloud.zebbra.ch
+      http:
+        paths:
+          - path: /(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: timetracker-frontend
+                port:
+                  name: http
