@@ -89,7 +89,7 @@ export class CalendarInput extends React.PureComponent {
     });
 
     // add the track values if there is one given
-    if (this.props.element.getIn(['track', 'value'])) {
+    if (this.props.element.getIn(['track', 'value']) !== undefined) {
       initialValues = initialValues.merge(Map({
         value: this.props.element.getIn(['track', 'value']).toString(),
         id: this.props.element.getIn(['track', 'id']),
