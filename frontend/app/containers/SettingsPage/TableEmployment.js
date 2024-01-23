@@ -108,7 +108,7 @@ class EmploymentSettingTable extends React.PureComponent {
                 <td className={'column-2'}></td>
               </tr>
               <tr>
-                <td className={'column-0'}>bewilligte Überzeit</td>
+                <td className={'column-0'}>bewilligte Überzeit (1% übersteigend)</td>
                 <td className={'column-1'}></td>
                 <td className={'column-2'}>{this.props.profile.transferGrantedOvertime.toFixed(2)}</td>
               </tr>

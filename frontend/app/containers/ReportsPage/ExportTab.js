@@ -55,7 +55,7 @@ export class ExportTab extends React.PureComponent {
             <ListItem disabled primaryText="Der Report darf nicht über mehrere Jahre gewählt werden." />
             <ListItem disabled primaryText="Falls Werte zusammenfassen deaktiviert ist, werden die Einträge für jeden einzelnen Tag über den gewählten Zeitraum ausgewiesen, ansonst werden die Werte aufsummiert." />
             <ListItem disabled primaryText="Falls Werte zusammenfassen deaktiviert ist, werden zusätzlich die Bemerkungen ausgewiesen." />
-            <ListItem disabled primaryText="Der erste Von-Bis Eintrag enthält jeweils zusätzlich den Übertrag für Überzeit und bewilligte Überzeit vom letzten Jahr." />
+            <ListItem disabled primaryText="Der erste Von-Bis Eintrag enthält jeweils zusätzlich den Übertrag für Überzeit (maximum 1%) und bewilligte Überzeit (1% übersteigend) vom letzten Jahr." />
             <ListItem disabled primaryText="Der Soll-Zeit vom Von-Bis Eintrag wird automatisch eine Stunde abgezogen (Zwibelenmärit)." />
             <ListItem disabled primaryText="Der Ferien Eintrag enthält zusätzlich den Übertrag für bewilligte Ferien vom letzten Jahr." />
             <ListItem disabled primaryText="Einträge welche auf Lektionen basieren, werden anhand des entsprechenden Umrechnungsfaktors in Stunden umgewandelt." />

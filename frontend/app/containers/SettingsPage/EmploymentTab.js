@@ -198,7 +198,7 @@ export class EmploymentTab extends React.PureComponent {
               },
               { key: 'transferGrantedOvertime',
                 boxes: [
-                  { width: 4 / 5, label: 'Bezeichnung', value: 'bewilligte Überzeit', align: 'left' },
+                  { width: 4 / 5, label: 'Bezeichnung', value: 'bewilligte Überzeit (1% übersteigend)', align: 'left' },
                   { width: 1 / 5, label: 'Stunden', value: profile.transferGrantedOvertime.toString(), align: 'right', name: 'transferGrantedOvertime' },
                 ],
               },

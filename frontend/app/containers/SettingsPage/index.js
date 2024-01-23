@@ -106,7 +106,7 @@ export class SettingsPage extends React.PureComponent {
         rows.push(['Totale Jahresarbeitszeit letztes Jahr', null, this.props.Settings.profile.transferTotalLastYear.toFixed(2)]);
         rows.push(['Überzeit (maximum 1%)', null, this.props.Settings.profile.transferOvertime.toFixed(2)]);
         rows.push(['bewilligte Ferien', this.props.Settings.profile.transferGrantedVacations.toFixed(2), null]);
-        rows.push(['bewilligte Überzeit', null, this.props.Settings.profile.transferGrantedOvertime.toFixed(2)]);
+        rows.push(['bewilligte Überzeit (1% übersteigend)', null, this.props.Settings.profile.transferGrantedOvertime.toFixed(2)]);
       } else {
         const emptyRow = [null, null, null, null];
         rows.push([title, null, null, null]);
