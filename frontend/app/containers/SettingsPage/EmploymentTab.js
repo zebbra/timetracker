@@ -103,7 +103,7 @@ export class EmploymentTab extends React.PureComponent {
           <EditableList
             header="Arbeitspensum"
             records={employmentRecords}
-            hasActionButtons={!isImpersonated}
+            hasActionButtons={!isImpersonated || isTeamleader}
             validate={{}}
             handleCreate={() => this.props.setComponent({ component: 'form', record: {} })}
             handleEdit={(record) => this.props.setComponent({ component: 'form', record: record.employment })}
@@ -172,7 +172,7 @@ export class EmploymentTab extends React.PureComponent {
               }
               submitProfile.trigger(payload);
             }}
-            isClosed={isClosed || isImpersonated}
+            isClosed={isClosed || (isImpersonated && !isTeamleader)}
           />
           <EditableList
             header="Überträge aus dem Vorjahr"

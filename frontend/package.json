@@ -1,6 +1,6 @@
 {
   "name": "zeiterfassung-medi",
-  "version": "2.7.3",
+  "version": "2.7.4",
   "description": "Timetracking tool based on react-boilerplate 3.4 and material-ui",
   "repository": {
     "type": "git",

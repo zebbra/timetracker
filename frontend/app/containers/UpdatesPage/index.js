@@ -18,6 +18,20 @@ function UpdatesPage() {
       >
         <Card className="cardWrapper">
           <CardHeader
+            title="Version 2.8.0"
+            subtitle="01-02-2024"
+            actAsExpander
+            showExpandableButton
+          />
+          <CardText expandable>
+            <h3>Erweiterungen</h3>
+            <List>
+              <ListItem disabled primaryText="TeamleaderInnen können neu auch die Arbeitspensen und geplanten Abwesenheiten ihrer MitarbeiterInnen bearbeiten." />
+            </List>
+          </CardText>
+        </Card>
+        <Card className="cardWrapper">
+          <CardHeader
             title="Version 2.7.3"
             subtitle="23-01-2024"
             actAsExpander
