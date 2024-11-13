@@ -5,7 +5,6 @@ const debug = require("debug")("app:reporting:indicator");
 
 const {
   LABEL_TO_PROFILE_LOOKUP,
-  DAY_TO_HOURS_ELEMENTS,
   HOURS_PER_DAY,
   DATE_KEY_FORMAT
 } = require("./constants");
@@ -16,7 +15,8 @@ const {
   fetchEmployments,
   calcEmploymentScopes,
   applyEmploymentScopes,
-  employmentLookup
+  employmentLookup,
+  getHouerlyElements
 } = require("./helpers");
 
 moment.locale("de");
@@ -159,13 +159,7 @@ const indicatorReporting = (models, params, callback) => {
             _.reduce(
               element.tracks,
               (sum, track) => {
-                if (
-                  includeRaw &&
-                  (!enhanced ||
-                    DAY_TO_HOURS_ELEMENTS.indexOf(
-                      LABEL_TO_PROFILE_LOOKUP[element.label]
-                    ) === -1)
-                ) {
+                if (includeRaw && (!enhanced || element.unit !== "d")) {
                   const key = moment(track.date).format(DATE_KEY_FORMAT);
 
                   if (!report.raw[key]) report.raw[key] = [];
@@ -253,7 +247,7 @@ function _enhancePlannedProfile(profile, employments, start, end) {
 
   const weekdays = _.sum(_.map(employmentScopesForYear, "workingDays"));
 
-  DAY_TO_HOURS_ELEMENTS.forEach(key => {
+  getHouerlyElements(start.year()).forEach(key => {
     profile[`${key}Hours`] = applyEmploymentScopes(
       profile[key],
       weekdays,
@@ -274,9 +268,7 @@ function _calcEnhancedValues(
   let actualHours, targetHours;
 
   if (enhanced) {
-    if (
-      DAY_TO_HOURS_ELEMENTS.indexOf(LABEL_TO_PROFILE_LOOKUP[element.label]) > -1
-    ) {
+    if (element.unit === "d") {
       actualHours = _.reduce(
         element.tracks,
         (sum, track) => {
