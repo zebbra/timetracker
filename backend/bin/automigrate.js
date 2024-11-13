@@ -66,7 +66,7 @@ function run() {
         unit: "d",
         holiday: true,
         start: moment()
-          .subtract(2, "years")
+          .year(2018)
           .startOf("year")
           .toDate()
       },
@@ -75,7 +75,7 @@ function run() {
         type: "static",
         unit: "d",
         start: moment()
-          .subtract(2, "years")
+          .year(2018)
           .startOf("year")
           .toDate()
       },
@@ -84,7 +84,7 @@ function run() {
         type: "static",
         unit: "d",
         start: moment()
-          .subtract(2, "years")
+          .year(2018)
           .startOf("year")
           .toDate()
       },
@@ -93,7 +93,7 @@ function run() {
         type: "static",
         unit: "h",
         start: moment()
-          .subtract(2, "years")
+          .year(2018)
           .startOf("year")
           .toDate()
       },
@@ -102,8 +102,23 @@ function run() {
         type: "static",
         unit: "d",
         start: moment()
-          .subtract(2, "years")
+          .year(2018)
           .startOf("year")
+          .toDate(),
+        end: moment()
+          .year(2024)
+          .endOf("year")
+          .endOf("day")
+          .toDate()
+      },
+      {
+        label: "Treueprämien",
+        type: "static",
+        unit: "h",
+        start: moment()
+          .year(2025)
+          .startOf("year")
+          .startOf("day")
           .toDate()
       },
       {
@@ -111,7 +126,7 @@ function run() {
         type: "static",
         unit: "n",
         start: moment()
-          .subtract(2, "years")
+          .year(2018)
           .startOf("year")
           .toDate()
       },
@@ -120,7 +135,7 @@ function run() {
         type: "range",
         unit: "r",
         start: moment()
-          .subtract(2, "years")
+          .year(2018)
           .startOf("year")
           .toDate()
       },
@@ -129,7 +144,7 @@ function run() {
         type: "range",
         unit: "r",
         start: moment()
-          .subtract(2, "years")
+          .year(2018)
           .startOf("year")
           .toDate()
       },
@@ -138,7 +153,7 @@ function run() {
         type: "range",
         unit: "r",
         start: moment()
-          .subtract(2, "years")
+          .year(2018)
           .startOf("year")
           .toDate()
       },
@@ -148,7 +163,7 @@ function run() {
         type: "dynamic",
         unit: "l",
         start: moment()
-          .subtract(2, "years")
+          .year(2018)
           .startOf("year")
           .toDate(),
         factor: 2.26
@@ -159,7 +174,7 @@ function run() {
         type: "dynamic",
         unit: "l",
         start: moment()
-          .subtract(2, "years")
+          .year(2018)
           .startOf("year")
           .toDate(),
         factor: 1.58
@@ -170,7 +185,7 @@ function run() {
         type: "dynamic",
         unit: "h",
         start: moment()
-          .subtract(2, "years")
+          .year(2018)
           .startOf("year")
           .toDate()
       },
@@ -180,7 +195,7 @@ function run() {
         type: "dynamic",
         unit: "h",
         start: moment()
-          .subtract(2, "years")
+          .year(2018)
           .startOf("year")
           .toDate()
       },
@@ -190,7 +205,7 @@ function run() {
         type: "dynamic",
         unit: "h",
         start: moment()
-          .subtract(2, "years")
+          .year(2018)
           .startOf("year")
           .toDate()
       },
@@ -200,7 +215,7 @@ function run() {
         type: "dynamic",
         unit: "h",
         start: moment()
-          .subtract(2, "years")
+          .year(2018)
           .startOf("year")
           .toDate()
       },
@@ -211,7 +226,7 @@ function run() {
         type: "dynamic",
         unit: "h",
         start: moment()
-          .subtract(2, "years")
+          .year(2018)
           .startOf("year")
           .toDate()
       },
@@ -221,7 +236,7 @@ function run() {
         type: "dynamic",
         unit: "h",
         start: moment()
-          .subtract(2, "years")
+          .year(2018)
           .startOf("year")
           .toDate()
       },
@@ -231,7 +246,7 @@ function run() {
         type: "dynamic",
         unit: "h",
         start: moment()
-          .subtract(2, "years")
+          .year(2018)
           .startOf("year")
           .toDate()
       },
@@ -241,7 +256,7 @@ function run() {
         type: "dynamic",
         unit: "h",
         start: moment()
-          .subtract(2, "years")
+          .year(2018)
           .startOf("year")
           .toDate()
       },
@@ -251,7 +266,7 @@ function run() {
         type: "dynamic",
         unit: "h",
         start: moment()
-          .subtract(2, "years")
+          .year(2018)
           .startOf("year")
           .toDate()
       },
@@ -261,7 +276,7 @@ function run() {
         type: "dynamic",
         unit: "h",
         start: moment()
-          .subtract(2, "years")
+          .year(2018)
           .startOf("year")
           .toDate()
       },
@@ -271,7 +286,7 @@ function run() {
         type: "dynamic",
         unit: "h",
         start: moment()
-          .subtract(2, "years")
+          .year(2018)
           .startOf("year")
           .toDate()
       },
@@ -281,7 +296,7 @@ function run() {
         type: "dynamic",
         unit: "h",
         start: moment()
-          .subtract(2, "years")
+          .year(2018)
           .startOf("year")
           .toDate()
       },
@@ -291,7 +306,7 @@ function run() {
         type: "dynamic",
         unit: "l",
         start: moment()
-          .subtract(2, "years")
+          .year(2018)
           .startOf("year")
           .toDate(),
         factor: 2.26
@@ -302,7 +317,7 @@ function run() {
         type: "dynamic",
         unit: "h",
         start: moment()
-          .subtract(2, "years")
+          .year(2018)
           .startOf("year")
           .toDate()
       },

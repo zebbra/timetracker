@@ -79,7 +79,8 @@ export class EmploymentTab extends React.PureComponent {
   }
 
   renderTab() {
-    const { isClosed, isImpersonated, isTeamleader, profile, employments } = this.props;
+    const { isClosed, isImpersonated, isTeamleader, profile, employments, selectedYear } = this.props;
+    const plannedPremiumsLabel = selectedYear > 2024 ? 'Stunden' : 'Tage';
     const { submitProfile } = this.props;
 
     const employmentRecords = [];
@@ -151,7 +152,7 @@ export class EmploymentTab extends React.PureComponent {
               { key: 'plannedPremiums',
                 boxes: [
                   { width: 4 / 5, label: 'Bezeichnung', value: 'Treueprämien', align: 'left' },
-                  { width: 1 / 5, label: 'Tage', value: profile.plannedPremiums.toString(), align: 'right', name: 'plannedPremiums' },
+                  { width: 1 / 5, label: plannedPremiumsLabel, value: profile.plannedPremiums.toString(), align: 'right', name: 'plannedPremiums' },
                 ],
               },
             ]}
@@ -251,6 +252,7 @@ EmploymentTab.propTypes = {
   }).isRequired,
   employments: PropTypes.array.isRequired,
   record: PropTypes.object.isRequired,
+  selectedYear: PropTypes.number.isRequired,
   // actions
   submitProfile: PropTypes.func.isRequired,
   setComponent: PropTypes.func.isRequired,

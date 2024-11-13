@@ -18,9 +18,16 @@ const DAY_TO_HOURS_ELEMENTS = [
   "plannedPremiums"
 ];
 
+const DAY_TO_HOURS_ELEMENTS_2025 = [
+  "transferGrantedVacations",
+  "plannedVacations",
+  "plannedMixed"
+];
+
 module.exports = {
   HOURS_PER_DAY,
   DATE_KEY_FORMAT,
   LABEL_TO_PROFILE_LOOKUP,
-  DAY_TO_HOURS_ELEMENTS
+  DAY_TO_HOURS_ELEMENTS,
+  DAY_TO_HOURS_ELEMENTS_2025
 };

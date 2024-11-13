@@ -4,6 +4,8 @@ import moment from 'moment-timezone';
 
 class EmploymentSettingTable extends React.PureComponent {
   render() {
+    const plannedPremiumsHouerly = this.props.selectedYear > 2024;
+
     const genRows = (sectionIndex) => {
       const rows = [];
 
@@ -72,8 +74,8 @@ class EmploymentSettingTable extends React.PureComponent {
               </tr>
               <tr>
                 <td className={'column-0'}>Treueprämien</td>
-                <td className={'column-1'}>{this.props.profile.plannedPremiums.toFixed(2)}</td>
-                <td className={'column-2'}></td>
+                <td className={'column-1'}>{!plannedPremiumsHouerly ? this.props.profile.plannedPremiums.toFixed(2) : undefined}</td>
+                <td className={'column-2'}>{plannedPremiumsHouerly ? this.props.profile.plannedPremiums.toFixed(2) : undefined}</td>
               </tr>
             </tbody>
           </table>
