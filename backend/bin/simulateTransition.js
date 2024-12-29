@@ -12,14 +12,19 @@ const sleep = ms => {
 };
 
 const yearTransition = async () => {
-  const startOfYear = moment()
-    .add(1, "d")
+  // First get the reference date (next day) that we'll use for all calculations
+  const referenceDate = moment().add(1, "d");
+
+  // Calculate start of previous year
+  const startOfYear = moment(referenceDate)
     .subtract(1, "year")
     .startOf("year");
-  const endOfYear = startOfYear.clone().endOf("year");
-  const year = moment()
-    .add(1, "d")
-    .year();
+
+  // Calculate end of previous year
+  const endOfYear = moment(startOfYear).endOf("year");
+
+  // Get the year from our reference date
+  const year = referenceDate.year();
   const successfull = [];
   const failed = [];
   const defaultProfile = {
