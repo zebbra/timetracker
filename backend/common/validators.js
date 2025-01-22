@@ -15,7 +15,7 @@ const VALID_EMAIL_DOMAINS = /^.*@zebbra\.ch|.*@medi\.ch|krebarb@gmail.com$/;
  */
 module.exports.ALPHA_NUMERIC_REGEX = /^[a-z0-9]+$/i;
 module.exports.NON_ALPHA_NUMERIC_REGEX = /[^a-z0-9]/gi;
-module.exports.ALPHA_NUMERIC_EXTENDED_REGEX = /^[a-z0-9\-_\s.]+$/i;
+module.exports.ALPHA_NUMERIC_EXTENDED_REGEX = /^[a-z0-9\-_\s.()]+$/i;
 module.exports.NAME_REGEX = /^([ \u00c0-\u01ffa-zA-Z'-/])+$/;
 module.exports.EMAIL_REGEX = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])$/;
 module.exports.PASSWORD_REGEX = /^((?=.*[a-z])(?=.*[0-9]))(?=.{8,})/;

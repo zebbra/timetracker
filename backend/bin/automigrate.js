@@ -180,6 +180,28 @@ function run() {
         factor: 1.58
       },
       {
+        project: "Unterrichts-Pool",
+        label: "Unterricht in der Klinik (Fachlehrpersonen)",
+        type: "dynamic",
+        unit: "l",
+        start: moment()
+          .year(2018)
+          .startOf("year")
+          .toDate(),
+        factor: 1.58
+      },
+      {
+        project: "Unterrichts-Pool",
+        label: "Unterricht in der Klinik (Zahnärzte)",
+        type: "dynamic",
+        unit: "l",
+        start: moment()
+          .year(2018)
+          .startOf("year")
+          .toDate(),
+        factor: 1.58
+      },
+      {
         project: "Schulpool",
         label: "Praktikumsplatzbewirtschaftung",
         type: "dynamic",

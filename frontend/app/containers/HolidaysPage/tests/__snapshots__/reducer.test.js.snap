@@ -4,6 +4,6 @@ Object {
   "holidays": Array [],
   "loading": false,
   "renderComponent": "table",
-  "selectedYear": 2024,
+  "selectedYear": 2025,
 }
 `;

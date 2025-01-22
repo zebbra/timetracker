@@ -4,7 +4,7 @@ export const EMAIL_REGEX = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?
 export const ALPHA_REGEX = /^[a-z]+$/i;
 export const ALPHA_NUMERIC_REGEX = /^[a-z0-9]+$/i;
 export const NON_ALPHA_NUMERIC_REGEX = /[^a-z0-9]/ig;
-export const ALPHA_NUMERIC_EXTENDED_REGEX = /^[a-z0-9\-_\s.]+$/i;
+export const ALPHA_NUMERIC_EXTENDED_REGEX = /^[a-z0-9\-_\s.()]+$/i;
 export const NAME_REGEX = /^([ \u00c0-\u01ffa-zA-Z'-/])+$/;
 export const PASSWORD_REGEX = /^((?=.*[a-z])(?=.*[0-9]))(?=.{8,})/;
 export const FACTOR_REGEX = /^\d{1}\.\d{2}$/;
