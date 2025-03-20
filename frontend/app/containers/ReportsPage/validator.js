@@ -15,6 +15,18 @@ function validateExport(values) {
   Object.assign(errors, dateBeforeAndAfter(values, 'start', 'end'));
   Object.assign(errors, dateSameYear(values, 'start', 'end'));
 
+  if (values.get('flat') && values.get('comments')) {
+    Object.assign(errors, { _error: 'Werte zusammenfassen und Bemerkungen können nicht gleichzeitig aktiviert sein.' });
+  }
+
+  if (values.get('flat') && values.get('compact')) {
+    Object.assign(errors, { _error: 'Werte zusammenfassen und Kompakt können nicht gleichzeitig aktiviert sein.' });
+  }
+
+  if (values.get('comments') && values.get('position')) {
+    Object.assign(errors, { _error: 'Bemerkungen und Position können nicht gleichzeitig aktiviert sein.' });
+  }
+
   return errors;
 }
 

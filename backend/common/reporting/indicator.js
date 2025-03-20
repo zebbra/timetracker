@@ -50,6 +50,7 @@ const indicatorReporting = (models, params, callback) => {
     end,
     userId,
     flat,
+    position,
     enhanced = false,
     includeRaw = false
   } = params;
@@ -72,6 +73,7 @@ const indicatorReporting = (models, params, callback) => {
         end,
         fields: ["id", "unit", "label"],
         type: "static",
+        label: position,
         includeTracks: true,
         userId,
         trackFields

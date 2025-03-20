@@ -37,6 +37,7 @@ const timeseriesReporting = (models, params, callback) => {
     userId,
     flat,
     asMap,
+    position,
     includeRaw = false,
     yearScope = false
   } = params;
@@ -61,6 +62,7 @@ const timeseriesReporting = (models, params, callback) => {
         end,
         fields: ["id", "label", "unit"],
         type: { inq: ["static", "range"] },
+        label: position,
         includeTracks: true,
         userId,
         trackFields
@@ -70,7 +72,11 @@ const timeseriesReporting = (models, params, callback) => {
   };
 
   const getHolidays = next => {
-    fetchHolidays(
+    if (position) {
+      return next(null, []);
+    }
+
+    return fetchHolidays(
       models.holiday,
       {
         start: yearScope ? startOfYear : start,

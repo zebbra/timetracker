@@ -24,10 +24,20 @@ const DAY_TO_HOURS_ELEMENTS_2025 = [
   "plannedMixed"
 ];
 
+const INDICATOR_TO_REPORTS_LOOKUP = {
+  Ferien: "totalVacationsForYear",
+  "Militär / Mutterschaft / Diverses": "totalMixed",
+  "Bew. Nachqual.": "totalQuali",
+  Treueprämien: "totalPremiums",
+  "Besondere Abwesenheiten": "totalSpecialAbsences",
+  Krankheit: "totalSickness"
+};
+
 module.exports = {
   HOURS_PER_DAY,
   DATE_KEY_FORMAT,
   LABEL_TO_PROFILE_LOOKUP,
   DAY_TO_HOURS_ELEMENTS,
-  DAY_TO_HOURS_ELEMENTS_2025
+  DAY_TO_HOURS_ELEMENTS_2025,
+  INDICATOR_TO_REPORTS_LOOKUP
 };

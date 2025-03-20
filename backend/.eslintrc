@@ -4,7 +4,12 @@
     "node": true,
     "es6": true
   },
-  "plugins": ["promise", "import", "standard", "node"],
+  "plugins": [
+    "promise",
+    "import",
+    "standard",
+    "node"
+  ],
   "extends": [
     "standard",
     "plugin:node/recommended",
@@ -26,17 +31,27 @@
         "allowArrowFunctions": true
       }
     ],
-    "node/exports-style": [2, "module.exports"],
+    "node/exports-style": [
+      2,
+      "module.exports"
+    ],
     "node/no-unpublished-require": [
       "error",
       {
-        "allowModules": ["expect.js", "jest-plugins"]
+        "allowModules": [
+          "expect.js",
+          "jest-plugins",
+          "proxyquire",
+          "sinon"
+        ]
       }
     ],
     "node/no-extraneous-require": [
       "error",
       {
-        "allowModules": ["jest-environment-node"]
+        "allowModules": [
+          "jest-environment-node"
+        ]
       }
     ],
     "no-multiple-empty-lines": [
@@ -54,9 +69,18 @@
     "prefer-template": 2,
     "promise/valid-params": 0,
     "promise/no-nesting": 0,
-    "semi": [2, "always"],
-    "standard/computed-property-even-spacing": [2, "never"],
-    "quotes": [2, "double"],
+    "semi": [
+      2,
+      "always"
+    ],
+    "standard/computed-property-even-spacing": [
+      2,
+      "never"
+    ],
+    "quotes": [
+      2,
+      "double"
+    ],
     "no-process-exit": 0
   }
 }

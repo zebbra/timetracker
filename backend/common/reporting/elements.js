@@ -11,7 +11,7 @@ moment.locale("de");
 
 const elementsReporting = (models, params, callback) => {
   debug(JSON.stringify(params));
-  const { start, end, userId, flat, includeRaw = false } = params;
+  const { start, end, userId, flat, position, includeRaw = false } = params;
 
   if (!start || !end || !userId)
     return callback(
@@ -31,6 +31,7 @@ const elementsReporting = (models, params, callback) => {
         end,
         fields: ["id", "factor", "unit", "label", "project"],
         type: "dynamic",
+        label: position,
         includeTracks: true,
         userId,
         trackFields

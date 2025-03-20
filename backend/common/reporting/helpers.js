@@ -14,7 +14,7 @@ moment.locale("de");
 
 const fetchElements = (
   Element,
-  { start, end, type, fields, includeTracks, userId, trackFields },
+  { start, end, type, label, fields, includeTracks, userId, trackFields },
   callback
 ) => {
   const elementsQuery = {
@@ -24,6 +24,10 @@ const fetchElements = (
 
   if (type) {
     elementsQuery.type = type;
+  }
+
+  if (label) {
+    elementsQuery.label = label;
   }
 
   if (includeTracks) {

@@ -281,11 +281,26 @@ module.exports = Element => {
       );
     }
 
+    if (filter.where.flat && filter.where.comments) {
+      return callback(
+        new Error("flat and comments can not be used at the same time")
+      );
+    }
+
+    if (filter.where.flat && filter.where.compact) {
+      return callback(
+        new Error("flat and compact can not be used at the same time")
+      );
+    }
+
     const params = {
       start: moment(filter.where.start).startOf("day"),
       end: moment(filter.where.end).endOf("day"),
+      position: filter.where.position,
       userId: accessToken.userId,
       flat: filter.where.flat !== undefined ? filter.where.flat : true,
+      compact:
+        filter.where.compact !== undefined ? filter.where.compact : false,
       asMap: filter.where.asMap !== undefined ? filter.where.asMap : false,
       enhanced:
         filter.where.enhanced !== undefined ? filter.where.enhanced : false,

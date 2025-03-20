@@ -5,13 +5,21 @@ const moment = require("moment-timezone");
 const { fetchEmployments, calcWeekdays } = require("./helpers");
 const formatters = require("../formatters");
 const fetchAll = require("./all");
-const { DATE_KEY_FORMAT } = require("./constants");
+const { DATE_KEY_FORMAT, INDICATOR_TO_REPORTS_LOOKUP } = require("./constants");
 
 moment.locale("de");
 
 const csvReporting = (models, params, callback) => {
   // whether to sum up or to display per day
   const aggregated = params.flat;
+
+  // if true and aggregated is false, then we filter out
+  // days for which there are no entries
+  const compact = params.compact;
+
+  // if a position is given, we report only the given
+  // element / indicator
+  const position = params.position;
 
   params.includeRaw = true;
   params.yearScope = true;
@@ -27,6 +35,17 @@ const csvReporting = (models, params, callback) => {
 
   if (!start.isSame(end, "year"))
     return callback(new Error("invalid range (multiple years)"));
+
+  if (aggregated && compact)
+    return callback(new Error("aggregated and compact are mutually exclusive"));
+
+  if (aggregated && params.includeComments)
+    return callback(
+      new Error("aggregated and comments are mutually exclusive")
+    );
+
+  if (position && params.includeComments)
+    return callback(new Error("position and comments are mutually exclusive"));
 
   const getEmployments = next => {
     if (!aggregated) {
@@ -59,8 +78,33 @@ const csvReporting = (models, params, callback) => {
         getEmployments: employments
       } = data;
 
+      if (position) {
+        const elementLabels = elements.data.map(({ label }) => label);
+        const indicatorLabels = Object.keys(reports.indicators);
+        const validPositions = _.uniq(_.concat(elementLabels, indicatorLabels));
+        if (!_.includes(validPositions, position)) {
+          return callback(new Error(`Position ${position} is not valid`));
+        }
+      }
+
+      let timestamps = false;
+      if (compact) {
+        const elementTimestamps = Object.keys(elements.raw);
+        const timeseriesTimestamps = Object.keys(timeseries.raw);
+        timestamps = _.sortBy(
+          _.uniq(_.concat(elementTimestamps, timeseriesTimestamps))
+        ).reverse();
+      }
+
       let dates;
-      if (!aggregated) {
+      if (compact && timestamps) {
+        dates = timestamps
+          .map(date => ({ date: moment(date) }))
+          .filter(timestamp => {
+            // must be between start and end
+            return timestamp.date.isBetween(start, end, "day", "[]");
+          });
+      } else if (!aggregated) {
         const result = calcWeekdays(
           {
             start,
@@ -73,13 +117,13 @@ const csvReporting = (models, params, callback) => {
 
       const rows = [];
 
-      function genHeaders() {
+      function genHeaders(title = "Element") {
         if (aggregated) {
-          return ["Element", "Soll [L]", "Soll [h]", "Ist [h]", "Saldo"];
+          return [title, "Soll [L]", "Soll [h]", "Ist [h]", "Saldo"];
         }
 
         return [
-          "Element",
+          title,
           ...dates.map(o => o.date.format("ddd DD.MM.YYYY")),
           "Soll [L]",
           "Soll [h]",
@@ -186,6 +230,32 @@ const csvReporting = (models, params, callback) => {
         return row;
       }
 
+      const POSITIONS_WITH_SALDO = ["Krankheit", "Bew. Nachqual."];
+      if (position) {
+        rows.push(genHeaders("Position"));
+        if (reports.indicators[position]) {
+          const element = {
+            label: position,
+            lookupKey: position,
+            actual: reports[`${INDICATOR_TO_REPORTS_LOOKUP[position]}Actual`],
+            target: reports[`${INDICATOR_TO_REPORTS_LOOKUP[position]}Target`],
+            sub: "Total Jahresarbeitszeit"
+          };
+          if (POSITIONS_WITH_SALDO.includes(position)) {
+            element.saldo =
+              reports[`${INDICATOR_TO_REPORTS_LOOKUP[position]}Actual`];
+          }
+          rows.push(genRow(element, "hours"));
+        } else {
+          const element = _.find(elements.data, { label: position });
+          if (element) {
+            rows.push(genRow({ ...element, sum: element.project }, "lecture"));
+          }
+        }
+
+        return callback(null, rows);
+      }
+
       // Filter out elements which we do not want to report in generic elements report
       const projects = _.chain(elements.data)
         .filter(entry => !_.includes(["Default"], entry.project))
@@ -207,7 +277,7 @@ const csvReporting = (models, params, callback) => {
 
           sorted.push(localTotal);
 
-          rows.push(genTitle(sorted[0].label));
+          rows.push(genTitle(sorted[0].project));
           rows.push(genHeaders());
           sorted.forEach(element => {
             rows.push(genRow(element, "lecture"));

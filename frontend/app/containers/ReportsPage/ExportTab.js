@@ -31,6 +31,7 @@ export class ExportTab extends React.PureComponent {
       end: moment().endOf('day').toDate(),
       flat: true,
       comments: false,
+      compact: false,
     });
 
     return (
@@ -54,7 +55,9 @@ export class ExportTab extends React.PureComponent {
           <List>
             <ListItem disabled primaryText="Der Report darf nicht über mehrere Jahre gewählt werden." />
             <ListItem disabled primaryText="Falls Werte zusammenfassen deaktiviert ist, werden die Einträge für jeden einzelnen Tag über den gewählten Zeitraum ausgewiesen, ansonst werden die Werte aufsummiert." />
-            <ListItem disabled primaryText="Falls Werte zusammenfassen deaktiviert ist, werden zusätzlich die Bemerkungen ausgewiesen." />
+            <ListItem disabled primaryText="Falls Werte zusammenfassen deaktiviert und Bemerkungen hinzufügen aktiviert ist, werden zusätzlich die Bemerkungen ausgewiesen." />
+            <ListItem disabled primaryText="Falls Kompakt aktiviert und Werte zusammenfassen deaktiviert ist, werden nur Tage gelistet, an welchen auch tatsächlich Einträge gemacht wurde." />
+            <ListItem disabled primaryText="Falls eine Position gesetzt ist, wird nur das entsprechende Leistungselement bzw. der entsprechende Indikator ausgewiesen." />
             <ListItem disabled primaryText="Der erste Von-Bis Eintrag enthält jeweils zusätzlich den Übertrag für Überzeit (maximum 1%) und bewilligte Überzeit (1% übersteigend) vom letzten Jahr." />
             <ListItem disabled primaryText="Der Soll-Zeit vom Von-Bis Eintrag wird automatisch eine Stunde abgezogen (Zwibelenmärit)." />
             <ListItem disabled primaryText="Der Ferien Eintrag enthält zusätzlich den Übertrag für bewilligte Ferien vom letzten Jahr." />

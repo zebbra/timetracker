@@ -117,8 +117,10 @@ export function* submitExportSaga({ payload }) {
   const query = JSON.stringify({ where: {
     start: payload.get('start'),
     end: payload.get('end'),
+    position: payload.get('position'),
     flat: payload.get('flat'),
     comments: payload.get('comments'),
+    compact: payload.get('compact'),
     type: 'export',
   } });
 

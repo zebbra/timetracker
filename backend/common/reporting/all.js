@@ -225,7 +225,8 @@ const fetchAll = (models, params, callback) => {
         totalLectureshipHoursTarget,
         totalLectureshipHoursActual,
         totalSaldoTarget,
-        totalSaldoActual
+        totalSaldoActual,
+        indicators
       };
 
       return callback(null, report);

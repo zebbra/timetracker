@@ -126,3 +126,9 @@ const closeAllModels = async () => {
 if (require.main === module) {
   closeAllModels();
 }
+
+// Export for testing
+module.exports = {
+  closeAllModels,
+  closeModel
+};

@@ -18,6 +18,21 @@ function UpdatesPage() {
       >
         <Card className="cardWrapper">
           <CardHeader
+            title="Version 2.9.0"
+            subtitle="20-03-2025"
+            actAsExpander
+            showExpandableButton
+          />
+          <CardText expandable>
+            <h3>Erweiterungen</h3>
+            <List>
+              <ListItem disabled primaryText="Reports können neu im Modus `Kompakt` exportier werden. In diesem Falle werden nur Tage exportiert, an welchen Einträge bestehen." />
+              <ListItem disabled primaryText="Reports können neu mit einer definierten `Position` exportier werden. In diesem Falle werden einträge für das selektieren Element / den selektierten Indikator exportiert." />
+            </List>
+          </CardText>
+        </Card>
+        <Card className="cardWrapper">
+          <CardHeader
             title="Version 2.8.0"
             subtitle="01-02-2024"
             actAsExpander

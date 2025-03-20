@@ -98,6 +98,7 @@ module.exports = User => {
       process.env.STAGING === "true"
     ) {
       debug(text);
+      debug(html);
     } else {
       const options = {
         from: config.Email.options.from,

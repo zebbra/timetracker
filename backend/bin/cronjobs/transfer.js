@@ -210,3 +210,8 @@ const yearTransition = async () => {
 if (require.main === module) {
   yearTransition();
 }
+
+// Export for testing
+module.exports = {
+  yearTransition
+};
