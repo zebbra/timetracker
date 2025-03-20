@@ -134,9 +134,17 @@ export function* submitExportSaga({ payload }) {
     const start = moment(payload.get('start')).format('DD.MM.YYYY');
     const end = moment(payload.get('end')).format('DD.MM.YYYY');
     const filename = `CSV-Export ${firstName} ${lastName} ${start} - ${end}.csv`;
-    exportToCsv(filename, response);
-    yield put(showAppInfo({ message: 'CSV Export steht zum Download bereit' }));
-    yield put(submitExport.success(response));
+
+    // if position is selected and no data is available for the selected period
+    // show a message to the user and do not export the data
+    if (payload.get('position') && ((!payload.get('flat') && response[0].length === 5) || (payload.get('flat') && response[1][3] === 0 && response[1][4] === 0))) {
+      yield put(showAppInfo({ message: 'Für die selektierte Position stehen für den angebebenen Zeitraum keine Einträge zur verfügung' }));
+      yield put(submitExport.success(response));
+    } else {
+      exportToCsv(filename, response);
+      yield put(showAppInfo({ message: 'CSV Export steht zum Download bereit' }));
+      yield put(submitExport.success(response));
+    }
   } catch (error) {
     yield handleReceiveAppError(error);
     yield put(submitExport.failure());

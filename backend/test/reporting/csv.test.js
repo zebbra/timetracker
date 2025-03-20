@@ -356,7 +356,7 @@ describe("CSV Reporting", () => {
         expect(rows[1][2]).to.equal(null);
         expect(rows[1][3]).to.equal(25);
         expect(rows[1][4]).to.equal(20);
-        expect(rows[1][5]).to.equal(-5);
+        expect(rows[1][5]).to.equal(5);
 
         done();
       }

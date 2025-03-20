@@ -221,11 +221,14 @@ const csvReporting = (models, params, callback) => {
         }
 
         row.push(formatters.asDecimal(element.actual));
-        row.push(
-          formatters.asDecimal(
-            element.saldo || element.target * -1 + element.actual
-          )
+        const saldo = formatters.asDecimal(
+          element.saldo || element.target * -1 + element.actual
         );
+        if (element.negateSaldo) {
+          row.push(saldo * -1);
+        } else {
+          row.push(saldo);
+        }
 
         return row;
       }
@@ -239,7 +242,8 @@ const csvReporting = (models, params, callback) => {
             lookupKey: position,
             actual: reports[`${INDICATOR_TO_REPORTS_LOOKUP[position]}Actual`],
             target: reports[`${INDICATOR_TO_REPORTS_LOOKUP[position]}Target`],
-            sub: "Total Jahresarbeitszeit"
+            sub: "Total Jahresarbeitszeit",
+            negateSaldo: true
           };
           if (POSITIONS_WITH_SALDO.includes(position)) {
             element.saldo =
