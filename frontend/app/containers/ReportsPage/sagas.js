@@ -138,7 +138,7 @@ export function* submitExportSaga({ payload }) {
     // if position is selected and no data is available for the selected period
     // show a message to the user and do not export the data
     if (payload.get('position') && ((!payload.get('flat') && response[0].length === 5) || (payload.get('flat') && response[1][3] === 0 && response[1][4] === 0))) {
-      yield put(showAppInfo({ message: 'Für die selektierte Position stehen für den angebebenen Zeitraum keine Einträge zur verfügung' }));
+      yield put(showAppInfo({ message: 'In diesem Zeitraum sind keine Einträge vorhanden' }));
       yield put(submitExport.success(response));
     } else {
       exportToCsv(filename, response);
